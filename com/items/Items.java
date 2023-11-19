@@ -32,6 +32,31 @@ public class Items {
     }
 
     /**
+     * "Items" regroup all informations of an item object. 
+     * This constructor create an object with name and with an id instanced
+     * @param name
+     * @param id
+     */
+    public Items(String name, short id) {
+        this.name = name;
+        this.idItem = id;
+        this.description = "An object named " + name + ".";
+    }
+
+    /**
+     * "Items" regroup all informations of an item object. 
+     * This constructor create an object with name, an id instanced and a unique description
+     * @param name
+     * @param id
+     * @param description
+     */
+    public Items(String name, short id, String description) {
+        this.name = name;
+        this.idItem = id;
+        this.description = description;
+    }
+
+    /**
      * This private method add an id to the item
      * @return Math.random
      */
@@ -56,7 +81,7 @@ public class Items {
     }
 
     /**
-     * Give a description of the item 
+     * Get the description of the item 
      */
     public String toString() {
         return this.description;
