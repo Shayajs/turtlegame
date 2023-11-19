@@ -57,6 +57,17 @@ public class Items {
     }
 
     /**
+     * "Items" regroup all informations of an item object.
+     * This constructor copy all information to get a duplicate
+     * @param item
+     */
+    public Items(Items item) {
+        this.name = item.getName();
+        this.idItem = item.getID();
+        this.description = item.toString();
+    }
+
+    /**
      * This private method add an id to the item
      * @return Math.random
      */
