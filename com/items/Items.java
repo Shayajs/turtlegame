@@ -9,20 +9,32 @@ public class Items {
     private String description;
 
     /**
-     * "Items" is an object
+     * "Items" regroup all informations of an item object. 
+     * This constructor create an object only with name
      * @param name
      */
     public Items(String name) {
         this.name = name;
         this.idItem = this.getNewID();
+        this.description = "An object named " + name + ".";
     }
 
+    /**
+     * "Items" regroup all informations of an item object. 
+     * This constructor create an object with name and with a unique description
+     * @param name
+     * @param description
+     */
     public Items(String name, String description) {
         this.name = name;
         this.description = description;
         this.idItem = this.getNewID();
     }
 
+    /**
+     * This private method add an id to the item
+     * @return Math.random
+     */
     private short getNewID() {
         return (short)(Math.random() * 1000);
     }
