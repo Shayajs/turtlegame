@@ -39,15 +39,26 @@ public class Items {
         return (short)(Math.random() * 1000);
     }
 
-    public String toString() {
-        return this.description;
-    }
-
+    /**
+     * Get the name of the item
+     * @return
+     */
     public String getName() {
         return this.name;
     }
 
+    /**
+     * Get the identification of the item
+     * @return
+     */
     public short getID() {
         return this.idItem;
+    }
+
+    /**
+     * Give a description of the item 
+     */
+    public String toString() {
+        return this.description;
     }
 }
