@@ -29,5 +29,31 @@ package com.utils;
  *                      can be used after that.
  */
 public class Commands {
-    
+
+    static String[] cmd = {"GO", "HELP", "LOOK", "TAKE", "QUIT"};
+
+    public static void quit() {
+        System.out.println("Quitting the game...");
+        System.exit(0);
+    }
+
+    public static void help() {
+        //Go
+        System.out.println("GO : the GO command is followed by the name of the neighbor location the" + //
+            " player wants to go. In case the location exists and the exit can be crossed, the hero" + //
+            " goes there, otherwise he stays in the same room. In each case, a display will indicate" + //
+            " what happens."
+        );
+        //Help
+        System.out.println("HELP indicates the set of available commands.");
+        //Look
+        System.out.println("LOOK : displays a description of the current location if no argument is given," + //
+        " or the specified item/person/room."
+        );
+        //Take
+        System.out.println("TAKE : adds the specified item to the hero's inventory if it exists and can be taken."
+        );
+        //Quit
+        System.out.println("QUIT : quit the game.");
+    }
 }
