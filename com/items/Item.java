@@ -2,7 +2,7 @@ package com.items;
 
 import java.lang.Math;
 
-public class Items {
+public class Item {
 
     private String name;
     private short idItem;
@@ -13,7 +13,7 @@ public class Items {
      * This constructor create an object only with name
      * @param name
      */
-    public Items(String name) {
+    public Item(String name) {
         this.name = name;
         this.idItem = this.getNewID();
         this.description = "An object named " + name + ".";
@@ -25,7 +25,7 @@ public class Items {
      * @param name
      * @param description
      */
-    public Items(String name, String description) {
+    public Item(String name, String description) {
         this.name = name;
         this.description = description;
         this.idItem = this.getNewID();
@@ -37,7 +37,7 @@ public class Items {
      * @param name
      * @param id
      */
-    public Items(String name, short id) {
+    public Item(String name, short id) {
         this.name = name;
         this.idItem = id;
         this.description = "An object named " + name + ".";
@@ -50,7 +50,7 @@ public class Items {
      * @param id
      * @param description
      */
-    public Items(String name, short id, String description) {
+    public Item(String name, short id, String description) {
         this.name = name;
         this.idItem = id;
         this.description = description;
@@ -61,7 +61,7 @@ public class Items {
      * This constructor copy all information to get a duplicate
      * @param item
      */
-    public Items(Items item) {
+    public Item(Item item) {
         this.name = item.getName();
         this.idItem = item.getID();
         this.description = item.toString();
