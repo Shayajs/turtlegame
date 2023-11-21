@@ -3,24 +3,24 @@ package com.items.unwieldy;
 import com.items.Item;
 import com.items.type.UselessItem;
 
-public class TheRock extends Item implements UselessItem {
-    public TheRock(Item item) {
+public class Grass extends Item implements UselessItem {
+    public Grass(Item item) {
         super(item);
     }
 
-    public TheRock(String name) {
+    public Grass(String name) {
         super(name);
     }
 
-    public TheRock(String name, short id) {
+    public Grass(String name, short id) {
         super(name, id);
     }
 
-    public TheRock(String name, String description) {
+    public Grass(String name, String description) {
         super(name, description);
     }
 
-    public TheRock(String name, short id, String description) {
+    public Grass(String name, short id, String description) {
         super(name, id, description);
     }
 
