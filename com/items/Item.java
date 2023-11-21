@@ -1,3 +1,4 @@
+
 package com.items;
 
 import java.lang.Math;
@@ -9,8 +10,8 @@ public abstract class Item {
     private String description;
 
     /**
-     * "Items" regroup all informations of an item object. 
-     * This constructor create an object only with name
+     * Constructor to create an item object with a name.
+     * A unique id is generated and a default description is set.
      * @param name
      */
     public Item(String name) {
@@ -20,8 +21,8 @@ public abstract class Item {
     }
 
     /**
-     * "Items" regroup all informations of an item object. 
-     * This constructor create an object with name and with a unique description
+     * Constructor to create an item object with a name and a description.
+     * A unique id is generated.
      * @param name
      * @param description
      */
@@ -32,8 +33,8 @@ public abstract class Item {
     }
 
     /**
-     * "Items" regroup all informations of an item object. 
-     * This constructor create an object with name and with an id instanced
+     * Constructor to create an item object with a name and a specified id.
+     * A default description is set.
      * @param name
      * @param id
      */
@@ -44,8 +45,7 @@ public abstract class Item {
     }
 
     /**
-     * "Items" regroup all informations of an item object. 
-     * This constructor create an object with name, an id instanced and a unique description
+     * Constructor to create an item object with a name, a specified id, and a description.
      * @param name
      * @param id
      * @param description
@@ -57,8 +57,8 @@ public abstract class Item {
     }
 
     /**
-     * "Items" regroup all informations of an item object.
-     * This constructor copy all information to get a duplicate
+     * Constructor to create a duplicate item object.
+     * All properties of the original item are copied to the new item.
      * @param item
      */
     public Item(Item item) {
@@ -68,7 +68,7 @@ public abstract class Item {
     }
 
     /**
-     * This private method add an id to the item
+     * Private method to generate a unique id for an item.
      * @return Math.random
      */
     private short getNewID() {
@@ -76,7 +76,7 @@ public abstract class Item {
     }
 
     /**
-     * Get the name of the item
+     * Get the name of the item.
      * @return
      */
     public String getName() {
@@ -84,7 +84,7 @@ public abstract class Item {
     }
 
     /**
-     * Get the identification of the item
+     * Get the identification of the item.
      * @return
      */
     public short getID() {
@@ -94,7 +94,7 @@ public abstract class Item {
     public abstract void use();
 
     /**
-     * Get the description of the item 
+     * Get the description of the item.
      */
     public String toString() {
         return this.description;
