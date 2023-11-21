@@ -1,4 +1,4 @@
-package com.items.wieldy; 
+package com.items.wieldy.other; 
 
 import com.items.Item;
 import com.items.type.UselessItem;
@@ -26,7 +26,6 @@ public class Stone extends Item implements UselessItem{
 
     @Override
     public void use() {
-        // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'use'");
     }
 }

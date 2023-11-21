@@ -1,4 +1,4 @@
-package com.items.wieldy;
+package com.items.wieldy.tool;
 
 import com.items.Item;
 import com.items.type.ToolItem;
@@ -26,7 +26,6 @@ public class Paper extends Item implements ToolItem {
 
     @Override
     public void use() {
-        // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'use'");
     }
 }

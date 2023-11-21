@@ -3,6 +3,9 @@ package com.items.unwieldy;
 import com.items.Item;
 import com.items.type.UselessItem;
 
+/**
+ * This item is usely placed for location
+ */
 public class Grass extends Item implements UselessItem {
     public Grass(Item item) {
         super(item);
@@ -26,7 +29,6 @@ public class Grass extends Item implements UselessItem {
 
     @Override
     public void use() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'use'");
+        throw new UnsupportedOperationException("'use' can't be used on Grass Items.");
     }
 }

@@ -6,7 +6,10 @@ import java.lang.Math;
  * An item is a descriptor object of all type of item existable.
  * Hero can have items, Location same.
  * 
- * There are 3 types of 
+ * There are 3 types of Item
+ * - ToolItem
+ * - WeaponItem
+ * - UselessItem
  */
 public abstract class Item {
 
@@ -96,14 +99,18 @@ public abstract class Item {
         return this.idItem;
     }
 
-    public abstract void use();
 
+    public void setDescription(String newDescription) {
+        this.description = newDescription;
+    }
     /**
      * Get the description of the item.
      */
     public String getDescription() {
         return this.description;
     }
+
+    public abstract void use();
     
     public String toString() {
         return "\"" + this.name + "\" : " +this.description;

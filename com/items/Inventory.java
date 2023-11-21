@@ -1,6 +1,8 @@
 package com.items;
 
+import java.util.ArrayList;
 import java.util.Map;
+import com.items.type.*;
 
 /**
  * This class Inventory can be implemented to a Hero, a map (Locations) or a NPC
@@ -147,6 +149,43 @@ public class Inventory {
             }
         }
         return null;
+    }
+
+    public void printListWeaponItem() {
+        for(Item item : this.inventory.keySet()) {
+            if(item instanceof WeaponItem) {
+                System.out.print(item.getName() + " - ");
+            }
+        }
+        System.out.println();
+    }
+
+    public void printListToolItem() {
+        for(Item item : this.inventory.keySet()) {
+            if(item instanceof ToolItem) {
+                System.out.print(item.getName() + " - ");
+            }
+        }
+        System.out.println();
+    }
+
+    public void printListUselessItem() {
+        for(Item item : this.inventory.keySet()) {
+            if(item instanceof WeaponItem) {
+                System.out.print(item.getName() + " - ");
+            }
+        }
+        System.out.println();
+    }
+
+    public ArrayList<Short> getIdListWeaponItem() {
+        ArrayList<Short> idList = new ArrayList<>();
+        for(Item item : this.inventory.keySet()) {
+            if(item instanceof WeaponItem) {
+                idList.add(item.getID());
+            }
+        }
+        return idList;
     }
 }
 //

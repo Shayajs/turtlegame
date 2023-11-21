@@ -3,6 +3,9 @@ package com.items.unwieldy;
 import com.items.Item;
 import com.items.type.UselessItem;
 
+/**
+ * This item is usely placed for location
+ */
 public class TheRock extends Item implements UselessItem {
     public TheRock(Item item) {
         super(item);
@@ -26,7 +29,6 @@ public class TheRock extends Item implements UselessItem {
 
     @Override
     public void use() {
-        // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'use'");
     }
 }

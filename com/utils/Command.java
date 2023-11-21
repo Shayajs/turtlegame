@@ -79,7 +79,7 @@ public class Command {
 
     public static void look(Item item) {
         if (item != null) {
-            System.out.println("\nVous regardez l'onjet \"" + item.getName() + "\" : " + item.getDescription());
+            System.out.println("\n\"" + item.getName().toUpperCase() + "\" :\n" + item.getDescription());
         } else {
                 System.out.println("There's nothing here!");
         }
