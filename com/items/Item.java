@@ -2,7 +2,7 @@ package com.items;
 
 import java.lang.Math;
 
-public class Item {
+public abstract class Item {
 
     private String name;
     private short idItem;
@@ -90,6 +90,8 @@ public class Item {
     public short getID() {
         return this.idItem;
     }
+
+    public abstract void use();
 
     /**
      * Get the description of the item 

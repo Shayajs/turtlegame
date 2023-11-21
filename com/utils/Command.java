@@ -36,10 +36,12 @@ import com.world.*;
 public class Command {
 
     protected static String[] cmd = {
-        "GO",
+        "GO",   //FINI
         "HELP", //Fini
         "LOOK",
         "TAKE",
+        "USE",
+        "GETLOCATION", //Fini
         "QUIT"  //Fini
     };
 
@@ -71,7 +73,14 @@ public class Command {
     }
 
     public static void go(Exit zone) {
-
         Command.currentLocation = zone.getDestination();
+    }
+
+    public static String look() {
+        return null;
+    }
+
+    public static Location getLocation() {
+        return Command.currentLocation;
     }
 }
