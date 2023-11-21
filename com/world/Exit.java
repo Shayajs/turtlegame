@@ -2,12 +2,11 @@ package com.world;
 
 public class Exit {
     private Location destination;
-
-    public Exit(l Location){
+    public Exit(Location l){
         this.destination = l;
     }
 
-    public Location getdestination(){
+    public Location getDestination(){
         return this.destination;
     }
 }
