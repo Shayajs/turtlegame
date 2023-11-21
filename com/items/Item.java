@@ -96,7 +96,12 @@ public abstract class Item {
     /**
      * Get the description of the item.
      */
-    public String toString() {
+
+    public String getDescription() {
         return this.description;
+    }
+    
+    public String toString() {
+        return "\"" + this.name + "\" : " +this.description;
     }
 }

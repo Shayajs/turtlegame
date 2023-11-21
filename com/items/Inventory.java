@@ -19,7 +19,10 @@ public class Inventory {
      * Put a new item in inventory or increment by 1 if already put
      * @param item
      */
-    public void putItems(Item item) {
+    public void putItems(Item item) throws RawItemNotAllowedException {
+        if(item.getClass() == Item.class)
+        throw new RawItemNotAllowedException();
+        
         if(this.isOnInventory(item)) {
             this.inventory.put(item, this.inventory.get(item) + 1 ); // Add 1 if object already exists
         }
@@ -124,7 +127,6 @@ public class Inventory {
         return null;
     }
 
-    
     public Item pickItem(String name) {
         if(this.isOnInventory(name)) {
             Item itemWanted = this.getItem(name); // We retrieve the item before making any manipulation on the inventory

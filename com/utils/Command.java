@@ -1,6 +1,7 @@
 package com.utils;
 
 import com.world.*;
+import com.items.Item;
 
 /**
  * the player interacts with the game by entering a sequence of sentences.
@@ -23,7 +24,7 @@ import com.world.*;
  *                      is given. In case a list of arguments is provided, a display of all arguments that can
  *                      be observed is given.
  * 
- *      —TAKE argument: add(ifpossible) the argument to the hero’s items.
+ *      —TAKE argument: add(if possible) the argument to the hero’s items.
  * 
  *      —QUIT:          quit the game.
  *      —USE arg1 [arg2]: uses the object arg1. In case a second argument is given, the first
@@ -76,8 +77,13 @@ public class Command {
         Command.currentLocation = zone.getDestination();
     }
 
-    public static String look() {
-        return null;
+    public static void look(Item item) {
+        if (item != null) {
+            System.out.println("\nVous regardez l'onjet \"" + item.getName() + "\" : " + item.getDescription());
+        } else {
+                System.out.println("There's nothing here!");
+        }
+        return;
     }
 
     public static Location getLocation() {
