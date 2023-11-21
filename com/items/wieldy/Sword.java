@@ -1,8 +1,9 @@
 package com.items.wieldy;
 
 import com.items.Item;
+import com.items.type.WeaponItem;
 
-public class Sword extends Item {
+public class Sword extends Item implements WeaponItem {
 
     public Sword(Item item) {
         super(item);
@@ -28,6 +29,12 @@ public class Sword extends Item {
     public void use() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'use'");
+    }
+
+    @Override
+    public int getDamage() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getDamage'");
     }
     
 }

@@ -1,7 +1,6 @@
 import com.utils.Command;
 import com.items.*;
-import com.items.wieldy.Knife;
-import com.items.wieldy.Sword;
+import com.items.wieldy.*;
 
 public class TurtleGame {
     public static void main(String[] argv) throws RawItemNotAllowedException {

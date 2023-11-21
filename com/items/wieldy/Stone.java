@@ -1,26 +1,26 @@
-package com.items.wieldy;
+package com.items.wieldy; 
 
 import com.items.Item;
-import com.items.type.ToolItem;
+import com.items.type.UselessItem;
 
-public class Paper extends Item implements ToolItem {
-    public Paper(Item item) {
+public class Stone extends Item implements UselessItem{
+    public Stone(Item item) {
         super(item);
     }
 
-    public Paper(String name) {
+    public Stone(String name) {
         super(name);
     }
 
-    public Paper(String name, short id) {
+    public Stone(String name, short id) {
         super(name, id);
     }
 
-    public Paper(String name, String description) {
+    public Stone(String name, String description) {
         super(name, description);
     }
 
-    public Paper(String name, short id, String description) {
+    public Stone(String name, short id, String description) {
         super(name, id, description);
     }
 

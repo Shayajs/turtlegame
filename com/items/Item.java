@@ -1,8 +1,13 @@
-
 package com.items;
 
 import java.lang.Math;
 
+/**
+ * An item is a descriptor object of all type of item existable.
+ * Hero can have items, Location same.
+ * 
+ * There are 3 types of 
+ */
 public abstract class Item {
 
     private String name;
@@ -96,7 +101,6 @@ public abstract class Item {
     /**
      * Get the description of the item.
      */
-
     public String getDescription() {
         return this.description;
     }

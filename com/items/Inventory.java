@@ -1,4 +1,3 @@
-
 package com.items;
 
 import java.util.Map;
@@ -22,7 +21,7 @@ public class Inventory {
     public void putItems(Item item) throws RawItemNotAllowedException {
         if(item.getClass() == Item.class)
         throw new RawItemNotAllowedException();
-        
+
         if(this.isOnInventory(item)) {
             this.inventory.put(item, this.inventory.get(item) + 1 ); // Add 1 if object already exists
         }
@@ -109,6 +108,7 @@ public class Inventory {
     /**
      * Check if an item exists and pick one
      * @param id
+     * @return item
      */
     public Item pickItem(short id) {
         if(this.isOnInventory(id)) {
@@ -127,6 +127,11 @@ public class Inventory {
         return null;
     }
 
+    /**
+     * Check if an item exists and pick one
+     * @param name
+     * @return item
+     */
     public Item pickItem(String name) {
         if(this.isOnInventory(name)) {
             Item itemWanted = this.getItem(name); // We retrieve the item before making any manipulation on the inventory
