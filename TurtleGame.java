@@ -1,8 +1,8 @@
-import com.utils.Commands;
+import com.utils.Command;
 
 public class TurtleGame {
     public static void main(String[] argv) {
-        Commands.help();
-        Commands.quit();
+        Command.help();
+        Command.quit();
     }
 }

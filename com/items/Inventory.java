@@ -8,7 +8,7 @@ import java.util.Map;
 public class Inventory {
     // Crée un dictionnaire d'item qui va lister le nombre d'élément qu'il y a dans un inventaire sous la forme <clef, valeur> = <Items, Integer>
     // ex : inventory.put(Items("Couteau"), 2) -> On ajoute deux couteaux dans l'inventaires
-    Map<Items, Integer> inventory;
+    Map<Item, Integer> inventory;
 
     public Inventory() {
         this.inventory = new java.util.HashMap<>(); //Instance du disctionnaire
@@ -18,7 +18,7 @@ public class Inventory {
      * Put a new item in inventory or increment by 1 if already put 
      * @param item
      */
-    public void putItems(Items item) {
+    public void putItems(Item item) {
         if(this.isOnInventory(item)) {
             this.inventory.put(item, this.inventory.get(item) + 1 ); //Ajoute 1 si objet existe déjà
         }
@@ -32,7 +32,7 @@ public class Inventory {
      * @param item
      * @return
      */
-    public boolean isOnInventory(Items item) {
+    public boolean isOnInventory(Item item) {
         return this.inventory.containsKey(item);
     }
 
@@ -42,7 +42,7 @@ public class Inventory {
      * @return
      */
     public boolean isOnInventory(short id) {
-        for (Items i: this.inventory.keySet()) {
+        for (Item i: this.inventory.keySet()) {
             if (i.getID() == id) {
                 return true;
             }
@@ -56,7 +56,7 @@ public class Inventory {
      * @return
      */
     public boolean isOnInventory(String name) {
-        for (Items i: this.inventory.keySet()) {
+        for (Item i: this.inventory.keySet()) {
             if (i.getName().equalsIgnoreCase(name)) {
                 return true;
             }
@@ -69,8 +69,8 @@ public class Inventory {
      * @param id
      * @return
      */
-    private Items getItem(short id) {
-        for (Items i : this.inventory.keySet()) {
+    private Item getItem(short id) {
+        for (Item i : this.inventory.keySet()) {
             if (i.getID() == id) {
                 return i;
             }
@@ -83,8 +83,8 @@ public class Inventory {
      * @param name
      * @return
      */
-    private Items getItem(String name) {
-        for (Items i : this.inventory.keySet()) {
+    private Item getItem(String name) {
+        for (Item i : this.inventory.keySet()) {
             if (i.getName() == name) {
                 return i;
             }
@@ -96,7 +96,7 @@ public class Inventory {
      * Delete an item within the inventory 
      * @param item
      */
-    private void removeFromInventory(Items item) {
+    private void removeFromInventory(Item item) {
         if (this.inventory.containsKey(item)) {
             this.inventory.remove(item);
         }
@@ -106,9 +106,9 @@ public class Inventory {
      * Check if an item exists and pick one 
      * @param id
      */
-    public Items pickItem(short id) {
+    public Item pickItem(short id) {
         if(this.isOnInventory(id)) {
-            Items itemWanted = this.getItem(id); // On récupère l'item avant de faire des manipulation sur l'inventaire
+            Item itemWanted = this.getItem(id); // On récupère l'item avant de faire des manipulation sur l'inventaire
             int numberOfItem = this.inventory.get(itemWanted); // On récupère son nombre pour mieux lire le code
 
             if(numberOfItem > 1) {
@@ -123,9 +123,9 @@ public class Inventory {
         return null;
     }
 
-    public Items pickItem(String name) {
+    public Item pickItem(String name) {
         if(this.isOnInventory(name)) {
-            Items itemWanted = this.getItem(name); // On récupère l'item avant de faire des manipulation sur l'inventaire
+            Item itemWanted = this.getItem(name); // On récupère l'item avant de faire des manipulation sur l'inventaire
             int numberOfItem = this.inventory.get(itemWanted); // On récupère son nombre pour mieux lire le code
 
             if(numberOfItem > 1) {

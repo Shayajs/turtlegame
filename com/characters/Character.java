@@ -1,5 +1,5 @@
 package com.characters;
 
-public class Characters {
+public class Character {
     
 }

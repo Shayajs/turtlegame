@@ -1,5 +1,5 @@
 package com.world;
 
-public class Exits {
+public class Exit {
     
 }

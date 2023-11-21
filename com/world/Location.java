@@ -3,6 +3,6 @@ package com.world;
 /**
  * 
  */
-public class Locations {
+public class Location {
     
 }
