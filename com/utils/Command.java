@@ -1,5 +1,7 @@
 package com.utils;
 
+import com.world.*;
+
 /**
  * the player interacts with the game by entering a sequence of sentences.
  * As soon as the end_of_line character is entered,
@@ -28,12 +30,20 @@ package com.utils;
  *                      one is used with the second. For example, use gun bullet may load the gun, which
  *                      can be used after that.
  * 
- *      —GETLOCATION : Return the current location
+ *      —GETLOCATION :  Return the current location
  */
 
 public class Command {
 
-    static String[] cmd = {"GO", "HELP", "LOOK", "TAKE", "QUIT"};
+    protected static String[] cmd = {
+        "GO",
+        "HELP", //Fini
+        "LOOK",
+        "TAKE",
+        "QUIT"  //Fini
+    };
+
+    protected static Location currentLocation;
 
     public static void quit() {
         System.out.println("Quitting the game...");
@@ -58,5 +68,10 @@ public class Command {
         );
         //Quit
         System.out.println("QUIT : quit the game.");
+    }
+
+    public static void go(Exit zone) {
+
+        Command.currentLocation = zone.getDestination();
     }
 }
