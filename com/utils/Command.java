@@ -43,6 +43,7 @@ public class Command {
         "TAKE",
         "USE",
         "GETLOCATION", //Fini
+        "ATTACK",
         "QUIT"  //Fini
     };
 
@@ -95,6 +96,40 @@ public class Command {
     }
 
     public static void Interact(Item item) {
-        
+
+    }
+
+    public static void command(String cmd) {
+        String[] words = cmd.split(" ");
+        switch (words[0].toLowerCase()) {
+            case "go":
+                if (words.length == 2) {
+                for (Exit e: currentLocation.exits) {
+                    if (e.getDestination().getName().equalsIgnoreCase(words[1])) {
+                    go(e);
+                break;
+            
+            case "help":
+                break;
+
+            case "look":
+                break;
+
+            case "take":
+                break;
+
+            case "use":
+                break;
+
+            case "attack":
+                break;
+
+            case "quit":
+                break;
+
+            default:
+                System.out.println("\"" + words[0].toLowerCase() + "\" is  a unknown command");
+                break;
+        }
     }
 }
