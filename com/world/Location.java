@@ -47,5 +47,9 @@ public class Location {
         this.firsttime = false;
     }
 
+    public Map<String, Exit> getExit() {
+        return this.exits;
+    }
+
 
 }
