@@ -89,4 +89,12 @@ public class Command {
     public static Location getLocation() {
         return Command.currentLocation;
     }
+
+    public static void Interact(Character charac) {
+
+    }
+
+    public static void Interact(Item item) {
+        
+    }
 }
