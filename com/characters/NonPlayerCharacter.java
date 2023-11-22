@@ -1,25 +1,31 @@
 package com.characters;
 
+import com.items.Inventory;
+
 public class NonPlayerCharacter extends Character{
 
     private String shortDescription;
     private String longDescription;
-    private boolean firstime = true;
+    private boolean firstTime = true;
+
+    public NonPlayerCharacter(String n, Inventory inventory) {
+        super(n, inventory);
+    }
 
     public String getDescription(){
-        if (firsttime){
-            return longDescription
+        if (this.firstTime){
+            return longDescription;
         }
         else{
-            return shortDescription
+            return shortDescription;
         }
     }
 
     public String getLongDescription() {
-        return longDescription
+        return longDescription;
     }
 
     public void lookedat(){
-        this.firsttime = false;
+        this.firstTime = false;
     }
 }

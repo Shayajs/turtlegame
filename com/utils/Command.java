@@ -104,9 +104,11 @@ public class Command {
         switch (words[0].toLowerCase()) {
             case "go":
                 if (words.length == 2) {
-                for (Exit e: currentLocation.getExit().keySet()) {
-                    if (e.getDestination().getName().equalsIgnoreCase(words[1])) {
-                    go(e);
+                    for (Exit e: currentLocation.getExit().values()) {
+                        if (e.getDestination().getName().equalsIgnoreCase(words[1]))
+                        go(e);
+                    }
+                }
                 break;
             
             case "help":

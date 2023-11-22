@@ -1,5 +1,7 @@
 package com.characters;
 
+import com.items.Inventory;
+
 public abstract class Character {
     private String name;
     private Inventory inventory;
