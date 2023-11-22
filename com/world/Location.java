@@ -3,6 +3,8 @@ import java.util.HashMap;
 import java.util.ArrayList;
 import java.util.Map;
 
+import com.characters.NonPlayerCharacter;
+import com.items.Inventory;
 /**
  * 
  */
@@ -12,13 +14,13 @@ public class Location {
     private String longDescription;
     private Map<String, Exit> exits = new HashMap<>();
     private Inventory inventory;
-    private bool firsttime = true;
+    private boolean firsttime = true;
     private ArrayList<NonPlayerCharacter> npcs;
 
     public Location(String n, String sd, String ld,  Map<String, Exit> exits, Inventory inventory, ArrayList<NonPlayerCharacter> npcs) {
         this.name = n;
-        this.shortDescriptiondescription = sd;
-        this.longDescriptiondescription = ld;
+        this.shortDescription = sd;
+        this.longDescription = ld;
         this.exits = exits;
         this.inventory = inventory;
         this.npcs = npcs;
@@ -26,15 +28,15 @@ public class Location {
 
     public String getDescription(){
         if (firsttime){
-            return longDescription
+            return this.longDescription;
         }
         else{
-            return shortDescription
+            return this.shortDescription;
         }
     }
 
     public String getLongDescription() {
-        return longDescription
+        return this.longDescription;
     }
 
     public String getName() {

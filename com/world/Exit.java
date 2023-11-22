@@ -10,9 +10,8 @@ public class Exit {
     }
 
     public void unlock(){
-        this.locked = false
+        this.locked = false;
     }
-}
     public Location getDestination(){
         return this.destination;
     }
