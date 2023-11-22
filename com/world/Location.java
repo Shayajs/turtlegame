@@ -37,6 +37,10 @@ public class Location {
         return longDescription
     }
 
+    public String getName() {
+        return name;
+    }
+
     public void lookedat(){
         this.firsttime = false;
     }

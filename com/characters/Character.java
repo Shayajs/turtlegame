@@ -8,4 +8,7 @@ public abstract class Character {
         this.name = name;
         this.inventory = inventory;
     }
+    public String getName() {
+        return name;
+    }
 }
