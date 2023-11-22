@@ -37,6 +37,9 @@ public class Location {
         return longDescription
     }
 
+    public void lookedat(){
+        this.firsttime = false;
+    }
 
 
 }
