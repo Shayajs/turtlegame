@@ -187,6 +187,26 @@ public class Inventory {
         }
         return idList;
     }
+
+    public ArrayList<Short> getIdListToolItem() {
+        ArrayList<Short> idList = new ArrayList<>();
+        for(Item item : this.inventory.keySet()) {
+            if(item instanceof ToolItem) {
+                idList.add(item.getID());
+            }
+        }
+        return idList;
+    }
+
+    public ArrayList<Short> getIdListUselessItem() {
+        ArrayList<Short> idList = new ArrayList<>();
+        for(Item item : this.inventory.keySet()) {
+            if(item instanceof UselessItem) {
+                idList.add(item.getID());
+            }
+        }
+        return idList;
+    }
 }
 //
 //This code provides a basic implementation of an inventory system. It allows you to add items, check if an item exists, and pick an item from the inventory.
