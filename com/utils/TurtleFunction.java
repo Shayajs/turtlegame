@@ -27,4 +27,19 @@ public class TurtleFunction {
         }
         return conversation;
     }
+
+    // Is a String by String function, insert one and unique String at once
+    public static void printConversation(String str) throws InterruptedException {
+        String[] charList = str.split("");
+        for(String chars: charList) {
+            Thread.sleep(5);
+            System.out.print(chars);
+        }
+    }
+
+    public static void printConversation(ArrayList<String> strs) throws InterruptedException {
+        for(String str: strs) {
+            TurtleFunction.printConversation(str);
+        }
+    }
 }

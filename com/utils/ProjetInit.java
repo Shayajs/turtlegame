@@ -14,8 +14,8 @@ public class ProjetInit {
         - A description 
         */ 
 
-        
 
+        
         //Location firstLocation = new Location();
     }
 }

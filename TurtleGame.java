@@ -1,9 +1,10 @@
 import com.items.*;
 import com.items.wieldy.tool.Paper;
 import com.items.wieldy.weapon.*;
+import com.utils.TurtleFunction;
 
 public class TurtleGame {
-    public static void main(String[] argv) throws RawItemNotAllowedException {
+    public static void main(String[] argv) throws RawItemNotAllowedException, InterruptedException {
 
         Item knife = new Knife("Couteau");
         Item sword = new Sword("Epée");
@@ -16,6 +17,6 @@ public class TurtleGame {
         bag.printListWeaponItem();
         bag.printListToolItem();
 
-        System.out.println(bag.getIdListWeaponItem());
+        TurtleFunction.printConversation(paper.getDescription());
     }
 }
