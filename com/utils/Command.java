@@ -316,10 +316,13 @@ public class Command {
                 break;
 
             case "creature":
-            ArrayList<NonPlayerCharacter> npcs = Command.currentLocation.getNPC();
-                for(int i=0 ; i < npcs.size() ; i++) {
-                    TurtleFunction.print(" - " + npcs.get(i).getName() + "\n");
-                }
+                ArrayList<NonPlayerCharacter> npcs = Command.currentLocation.getNPC();
+                if(npcs.size() > 0) {
+                    for(int i=0 ; i < npcs.size() ; i++) {
+                        TurtleFunction.print(" - " + npcs.get(i).getName() + "\n");
+                    }
+                } 
+                else TurtleFunction.print("No Creature here, except you.");
                 break;
 
             case "all":

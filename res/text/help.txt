@@ -9,6 +9,8 @@ HELP : indicates the set of available commands.
 
 TALK ARG : Talk to NPC.
 
+ATTACK : Attack the Mobs/NPC, or maybe not.
+
 LOOK : displays a description of the current location if no argument is given,
         or the specified item/person
 
