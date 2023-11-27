@@ -254,14 +254,31 @@ public class Command {
     }
 
     private static void talk(String[] words) throws InterruptedException {
-        ArrayList<NonPlayerCharacter> npcs = currentLocation.getNPC();
-        for (int i = 0; i < npcs.size(); i++) {
-            if(npcs.get(i).getName().equalsIgnoreCase(words[1]))
-            {
-                npcs.get(i).interact();
-                return;
-            }
-        }   
+        switch(words[1]) {
+            case "npc":
+                TurtleFunction.print("If you do not know who is there, try this 'list creature'. Don't thanks me.");
+                break;
+            case "me":
+                TurtleFunction.print("This is lovely, but i cannot speak, i'm a Turtle after all. Talk to another one.");
+                break;
+            case "kiddo":
+                TurtleFunction.print("Why do you want to speek to youself??");
+                break;
+            case "any":
+                TurtleFunction.print("Sorry, at this rate i can not help you. No ! Command help can you, not me.");
+                break;
+            default:
+                ArrayList<NonPlayerCharacter> npcs = currentLocation.getNPC();
+                for (int i = 0; i < npcs.size(); i++) {
+                    if(npcs.get(i).getName().equalsIgnoreCase(words[1]))
+                    {
+                        npcs.get(i).interact();
+                        return;
+                    }
+                }
+                TurtleFunction.print("Try 'list creature' to know who to speak with.");
+                break;
+        }  
     }
 
     private static void use(String string) throws InterruptedException {
