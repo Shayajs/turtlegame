@@ -168,6 +168,8 @@ public class Command {
                 break;
 
             case "look":
+                String description = Command.currentLocation.getDescription();
+                TurtleFunction.printConversation(description);
                 break;
 
             case "take":

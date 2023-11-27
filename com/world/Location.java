@@ -53,6 +53,7 @@ public class Location {
 
     public String getDescription(){
         if (firsttime){
+            this.firsttime = false;
             return this.longDescription;
         }
         else{
