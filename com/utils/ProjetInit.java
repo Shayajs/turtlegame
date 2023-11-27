@@ -3,6 +3,7 @@ package com.utils;
 import com.world.*;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import com.characters.NonPlayerCharacter;
 import com.items.*;
@@ -36,16 +37,24 @@ public class ProjetInit {
         // ---- Bunker ----
         /* In order :
          * - Creation of only 1 exit : The House
-         * - Add 1 Item : The father diary
-         * - Add these two objects to Location and add 2 types of Description : A short and a long one.
+         * - Add Items
+         * - Add these objects to Location and add 2 types of Description : A short and a long one.
          */
         Exit bunkerToHouse = new Exit("B2H", "This is an exit to go to House from Bunker.");
         bunkerToHouse.unlock(); //The exit is natively unlock
-        Item diary = new Diary("Diary", "This diary belonging to the hero's father");
-        String bunkerShortDescription = "This place is a bunker, cold and dark.";
-        String bunkerLongDescription = "";
+        Item diary = new Diary("Diary", "This diary is up to the desk. It belonging to the hero's father");
+        Item bed = new Bed("Bed", "A large bed, big enough for 2 humans and a turtle to sleep. Not soft enough though.");
+        Item desk = new Desk("Desk", "A simple desk. Kiddo read a thousand times what’s written down : \"I’ve finally finished the bunker! We’re ready for whatever comes to us. I’ll keep updating this bunker journal with our everyday life in it.\"\n Apart from these words, the journal remains completely blank.");
+        Item storageShelf = new StorageShelf("Storage Shelf", "It contains enough food and water to survive some years. Yeah, Babou was very prepared.");
+        Item door = new Door("Door", "Big door, designed to be solid but yet can be open by a child.");
+        String bunkerShortDescription = "It’s the bunkers, warm for Babou.";
+        String bunkerLongDescription = "The bunker is pretty comfortable for something Babou built in 5 months. With a look around, we can see a bedding area, a storage shelf and a desk where lies a journal Babou left here. And of course the solid door, leading to the house.";
         Location bunker = new Location("Bunker", bunkerShortDescription, bunkerLongDescription);
         bunker.addItem(diary);
+        bunker.addItem(storageShelf);
+        bunker.addItem(bed);
+        bunker.addItem(desk);
+        bunker.addItem(door);
         bunker.addExit(bunkerToHouse);
 
         //Bunker is the first location
@@ -54,19 +63,21 @@ public class ProjetInit {
         /*
          * In order :
          * - Creation of 2 exits : to Bunker and to Street (Street is locked)
-         * - Add 2 Items : A family portrait and the key to go out.
-         * - Add these four objects to Location and add 2 types of Description : A short and a long one.
+         * - Add Items
+         * - Add these objects to Location and add 2 types of Description : A short and a long one.
          * - Explain to bunker than the house is an available exit.
          */
         Exit houseToBunker = new Exit("H2B", bunker, "This is an exit to go to Bunker from House.");
         Exit houseToStreet = new Exit("H2S", "This is an exit to go to Street from House.");
-        Item familyPortrait = new FamilyPortrait("Family Portrait", "This a family portrait of Hero Family, maybe dead at this time...");
-        Item key = new Key("Key", "This key maybe unlock the house entrance.");
-        String houseShortDescription = "This place is the main house of the family's hero.";
-        String houseLongDescription = "";
+        Item familyPortrait = new FamilyPortrait("Family Portrait", "It's a picture from 4 years ago. There is me in kiddo’s arms who was in Babou’s arms. So sweet. There is a legend written by hand on the other side: “My babies <3 <3, I’ll keep them safe”");
+        Item key = new Key("Key", "Might be better to take it if we want to get out of here.");
+        Item slideboard = new Sideboard("Sideboard", "It’s full of irrelevant furniture. On the top, there’s an old family picture and a key. Probably, the key to the house.");
+        String houseShortDescription = "It’s our old home.";
+        String houseLongDescription = "The house kiddo and I grew up in, not with that many rooms, but it was fine for the 3 of us. The walls are covered with bullet holes, most of our furniture is too mangled to identify, except for the sideboard which miraculously remains up. The door leads directly to the street.";
         Location house = new Location("House", houseShortDescription, houseLongDescription);
         house.addItem(key);
         house.addItem(familyPortrait);
+        house.addItem(slideboard);
         house.addExit(houseToBunker);
         house.addExit(houseToStreet);
         bunkerToHouse.setDestination(house); //House is now set, we can add it in an exit.
@@ -75,9 +86,9 @@ public class ProjetInit {
         /*
          * In order :
          * - Creation of 3 exits : to House, to Forest and to Bank (The last two are locked)
-         * - Add 2 Items : A poster and a stone, useless stone.
-         * - Add 1 NPC : Mushroom Brothers
-         * - Add these six objects to Location and add 2 types of Description : A short and a long one.
+         * - Add Items : A poster and a stone, useless stone.
+         * - Add NPC : Mushroom Brothers
+         * - Add these objects to Location and add 2 types of Description : A short and a long one.
          * - Explain to house than the forest is an available exit.
          */
         Exit streetToHouse = new Exit("S2H", house, "This is an exit to go to House from Street.");
@@ -85,7 +96,7 @@ public class ProjetInit {
         Exit streetToForest = new Exit("S2F", "This is an exit to go to Forest from Street.");
         Exit streetToBank = new Exit("S2B", "You cannot go to the bank before going in forest.");
         String streetShortDescription = "This place is a small town where Hero lives";
-        String streeLongDescription = "";
+        String streeLongDescription = "The neighborhood around has nothing to do with what we used to know. In only two months, the tar of the road turned purple. The external walls of all the houses are covered with snow, not sure about how it’s holding up.There are no cars, no sign of recent human occupation. Most of the poles are destroyed, melted into the ground, there’s still a poster on one of them. The way to the forest seems highlighted as if someone wanted us to go. And 2 human-sized mushrooms were \"facing\" us.";
         Item stone = new Stone("Stone", "An useless stone in the street.");
         Item poster = new Poster("Poster", "A poster in a street with \"Down with capitalism!\".");
         Location street = new Location("Street", streetShortDescription, streeLongDescription);
@@ -164,9 +175,11 @@ public class ProjetInit {
 
     }
 
-    public static void loop() {
+    public static void start() throws IOException, InterruptedException {
+        ArrayList<String> firstDialog = TurtleFunction.getConversationNPC("StartDialog.txt");
+        TurtleFunction.printConversation(firstDialog);
         do {
-
+            Command.setThisIsTheEnd(true);
         }while(!Command.isThisTheEnd());
     } 
 }

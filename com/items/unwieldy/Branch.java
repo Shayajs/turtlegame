@@ -29,7 +29,7 @@ public class Branch extends Item implements UselessItem {
 
     @Override
     public void use() {
-        throw new UnsupportedOperationException("'use' can't be used on Grass Items.");
+        throw new UnsupportedOperationException("'use' can't be used on Branch Items.");
     }
 }
 
