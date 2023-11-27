@@ -20,7 +20,7 @@ public class Inventory {
      * Put a new item in inventory or increment by 1 if already put
      * @param item
      */
-    public void putItems(Item item) throws RawItemNotAllowedException {
+    public void addItem(Item item) throws RawItemNotAllowedException {
         if(item.getClass() == Item.class)
         throw new RawItemNotAllowedException();
 

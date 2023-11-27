@@ -9,9 +9,9 @@ public class TurtleGame {
         Item sword = new Sword("Epée");
         Item paper = new Paper("Papier 1");
         Inventory bag = new Inventory();
-        bag.putItems(sword);
-        bag.putItems(knife);
-        bag.putItems(paper);
+        bag.addItem(sword);
+        bag.addItem(knife);
+        bag.addItem(paper);
 
         bag.printListWeaponItem();
         bag.printListToolItem();

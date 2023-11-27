@@ -4,15 +4,19 @@ import com.items.Inventory;
 
 public class Hero extends Character{
 
-    private boolean bankKnown = false;
+    private boolean bankKnown;
 
-    public Hero(String n, Inventory inventory) {
-        super(n, inventory);
-        //TODO Auto-generated constructor stub
+    public Hero(String name, Inventory inventory) {
+        super(name, inventory);
+        this.bankKnown = false;
     }
 
-    public void KnowTheBank(){
+    public void setKnowTheBank(){
         this.bankKnown = true;
+    }
+
+    public boolean isKnowTheBank() {
+        return bankKnown;
     }
 
 }

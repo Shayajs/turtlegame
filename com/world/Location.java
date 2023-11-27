@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Map;
 
 import com.characters.NonPlayerCharacter;
-import com.items.Inventory;
+import com.items.*;
 /**
  * 
  */
@@ -33,6 +33,10 @@ public class Location {
         else {
 
         }
+    }
+    
+    public void addItems(Item item) throws RawItemNotAllowedException {
+        this.inventory.addItem(item);
     }
 
     public String getDescription(){
