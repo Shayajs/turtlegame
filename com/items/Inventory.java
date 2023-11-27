@@ -3,6 +3,7 @@ package com.items;
 import java.util.ArrayList;
 import java.util.Map;
 import com.items.type.*;
+import com.items.unwieldy.Unwieldy;
 
 /**
  * This class Inventory can be implemented to a Hero, a map (Locations) or a NPC
@@ -74,7 +75,7 @@ public class Inventory {
      * @param id
      * @return
      */
-    private Item getItem(short id) {
+    private Item findByID(short id) {
         for (Item i : this.inventory.keySet()) {
             if (i.getID() == id) {
                 return i;
@@ -88,9 +89,9 @@ public class Inventory {
      * @param name
      * @return
      */
-    private Item getItem(String name) {
+    private Item findByName(String name) {
         for (Item i : this.inventory.keySet()) {
-            if (i.getName() == name) {
+            if(i.getName().equalsIgnoreCase(name)) {
                 return i;
             }
         }
@@ -114,14 +115,14 @@ public class Inventory {
      */
     public Item pickItem(short id) {
         if(this.isOnInventory(id)) {
-            Item itemWanted = this.getItem(id); // We retrieve the item before making any manipulation on the inventory
+            Item itemWanted = this.findByID(id); // We retrieve the item before making any manipulation on the inventory
             int numberOfItem = this.inventory.get(itemWanted); // We retrieve its number for better reading the code
 
-            if(numberOfItem > 1) {
+            if(numberOfItem > 1 && isPickable(itemWanted.getName())) {
                 this.inventory.put(itemWanted, numberOfItem - 1);
                 return itemWanted;
             }
-            else if(numberOfItem == 1) {
+            else if(numberOfItem == 1 && isPickable(itemWanted.getName())) {
                 this.removeFromInventory(itemWanted);
                 return itemWanted;
             }
@@ -136,14 +137,14 @@ public class Inventory {
      */
     public Item pickItem(String name) {
         if(this.isOnInventory(name)) {
-            Item itemWanted = this.getItem(name); // We retrieve the item before making any manipulation on the inventory
+            Item itemWanted = this.findByName(name); // We retrieve the item before making any manipulation on the inventory
             int numberOfItem = this.inventory.get(itemWanted); // We retrieve its number for better reading the code
 
-            if(numberOfItem > 1) {
+            if(numberOfItem > 1 && isPickable(name)) {
                 this.inventory.put(itemWanted, numberOfItem - 1);
                 return itemWanted;
             }
-            else if(numberOfItem == 1) {
+            else if(numberOfItem == 1 && isPickable(name)) {
                 this.removeFromInventory(itemWanted);
                 return itemWanted;
             }
@@ -187,6 +188,39 @@ public class Inventory {
             }
         }
         return idList;
+    }
+
+    public ArrayList<String> getListItemDescription() {
+        ArrayList<String> listItems = new ArrayList<>();
+        for (Item item: inventory.keySet()) {
+            listItems.add(item.toString());
+        }
+        return listItems;
+    }
+
+    public ArrayList<String> getListItem() {
+        ArrayList<String> listItems = new ArrayList<>();
+        for (Item item: inventory.keySet()) {
+            listItems.add(item.getName());
+        }
+        return listItems;
+    }
+
+    public String getDescriptionOf(String nameItem) {
+        Item itemToGet = this.findByName(nameItem);
+        if(itemToGet != null)
+        return itemToGet.getDescription();
+        else return null;
+    }
+
+    public boolean isPickable(String nameItem) {
+        Item itemToCheck = findByName(nameItem);
+        return itemToCheck != null && !(itemToCheck instanceof Unwieldy);
+    }
+
+    public void useItem(String string) {
+        Item item = findByName(string);
+        item.use();
     }
 }
 //

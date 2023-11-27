@@ -1,17 +1,20 @@
 package com.world;
 import java.util.HashMap;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Map;
 
 import com.characters.NonPlayerCharacter;
 import com.items.*;
+import com.utils.TurtleFunction;
 /**
  * 
  */
 public class Location {
     private String name;
-    private String shortDescription;
-    private String longDescription;
+    private String secondComing; //go2
+    private ArrayList<String> firstComing; // go1 
+    private String description; //desc
     private Map<String, Exit> exits = new HashMap<>();
     private Inventory inventory;
     private boolean firsttime = true;
@@ -19,17 +22,18 @@ public class Location {
 
     public Location(String name, String shortDescription, String longDescription,  Map<String, Exit> exits, Inventory inventory, ArrayList<NonPlayerCharacter> npcs) {
         this.name = name;
-        this.shortDescription = shortDescription;
-        this.longDescription = longDescription;
+        this.secondComing = shortDescription;
+        this.description = longDescription;
         this.exits = exits;
         this.inventory = inventory;
         this.npcs = npcs;
     }
 
-    public Location(String name, String shortDescription, String longDescription) {
+    public Location(String name, String directoryPathString) throws IOException {
         this.name = name;
-        this.shortDescription = shortDescription;
-        this.longDescription = longDescription;
+        this.secondComing = TurtleFunction.getDescriptionFile(directoryPathString + "/" + "go2_" + name + ".txt");
+        this.description = TurtleFunction.getDescriptionFile(directoryPathString + "/" + "desc_" + name + ".txt");
+        this.firstComing = TurtleFunction.getConversationNPC(directoryPathString + "/" + "go1_" + name + ".txt");
         this.inventory = new Inventory();
         this.npcs = new ArrayList<>();
     }
@@ -51,22 +55,16 @@ public class Location {
         this.exits.put(exit.getName(), exit);
     }
 
-    public String getDescription(){
-        if (firsttime){
-            this.firsttime = false;
-            return this.longDescription;
-        }
-        else{
-            return this.shortDescription;
-        }
-    }
-
-    public String getLongDescription() {
-        return this.longDescription;
+    public String getDescription() {
+        return this.description;
     }
 
     public String getName() {
         return name;
+    }
+
+    public ArrayList<NonPlayerCharacter> getNPC() {
+        return npcs;
     }
 
     public void lookedat(){
@@ -77,5 +75,28 @@ public class Location {
         return this.exits;
     }
 
+    public Item take(String objet) {
+        return this.inventory.pickItem(objet);
+    }
 
+    public String getDescriptionOfItem(String name) {
+        return this.inventory.getDescriptionOf(name);
+    }
+
+    public Inventory getInventory() {
+        return this.inventory;
+    }
+
+    public void goTo() throws InterruptedException {
+        if(this.firsttime) {
+            TurtleFunction.print(this.firstComing);
+            firsttime = false;
+        }
+        else
+        TurtleFunction.print(this.secondComing);
+    }
+
+    public void look() throws InterruptedException {
+        TurtleFunction.print(this.description);
+    }
 }

@@ -1,0 +1,5 @@
+talk1: les premières paroles
+talk2: dialogues tant que bébé hérisson est pas rendu
+talk3: dialogues après que bébé hérisson soit rendu
+
+go_village_np : ce qui s'affiche quand le joueur essaie d'aller au village sans savoir le chemin secret.

@@ -9,7 +9,7 @@ public class TurtleFunction {
 
         try {
         // Open the file
-            File conversationFile = new File("./res/" + filename);
+            File conversationFile = new File(filename);
             // Get a reader for the file
             FileReader fr = new FileReader(conversationFile);
             // Get a Buffer Reader
@@ -27,8 +27,16 @@ public class TurtleFunction {
         return conversation;
     }
 
+    public static String getDescriptionFile(String filename) throws IOException {
+        ArrayList<String> text = TurtleFunction.getConversationNPC(filename);
+        if(text.size() == 0)
+        return "Fichier Vide";
+        else
+        return text.get(0);
+    }
+
     // Is a String by String function, insert one and unique String at once
-    public static void printConversation(String str) throws InterruptedException {
+    public static void print(String str) throws InterruptedException {
         String[] charList = str.split("");
         for(String chars: charList) {
             Thread.sleep(5);
@@ -37,11 +45,11 @@ public class TurtleFunction {
         //System.out.print("\n");
     }
 
-    public static void printConversation(ArrayList<String> strs, int waitSecondesBeforeDisplay) throws InterruptedException {
+    public static void print(ArrayList<String> strs, int waitSecondesBeforeDisplay) throws InterruptedException {
         
         
         for(String str: strs) {
-            TurtleFunction.printConversation(str);
+            TurtleFunction.print(str);
             Thread.sleep(waitSecondesBeforeDisplay);
             System.out.print("\n");
             System.out.print("Enter to continue.\r");
@@ -49,8 +57,8 @@ public class TurtleFunction {
         }
     }
 
-    public static void printConversation(ArrayList<String> strs) throws InterruptedException {
+    public static void print(ArrayList<String> strs) throws InterruptedException {
         int waitSecondesBeforeDisplay = 2000;
-        TurtleFunction.printConversation(strs, waitSecondesBeforeDisplay);
+        TurtleFunction.print(strs, waitSecondesBeforeDisplay);
     }
 }

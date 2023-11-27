@@ -1,0 +1,2 @@
+butt=butterfly
+talk_turtle: décrit le win/ fin du jeu

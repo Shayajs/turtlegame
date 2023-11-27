@@ -2,10 +2,14 @@ package com.utils;
 
 import com.world.*;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import com.characters.Hero;
+import com.characters.NonPlayerCharacter;
+import com.items.Inventory;
 import com.items.Item;
+import com.items.RawItemNotAllowedException;
 
 /**
  * the player interacts with the game by entering a sequence of sentences.
@@ -45,12 +49,13 @@ public class Command {
 
         "GO",   //FINI
         "HELP", //Fini
-        "LOOK",
-        "TAKE",
+        "LOOK", //Fini
+        "TAKE", //Fini
         "USE",
-        "GETLOCATION", //Fini
+        "GETEXIT", //Fini
         "ATTACK",
         "QUIT"  //Fini
+        "LIST" //Fini
     */
     private static boolean alreadyInitialized = false;
     private static boolean thisIsTheEndBool;
@@ -115,51 +120,90 @@ public class Command {
         //Take
         System.out.println("TAKE : adds the specified item to the hero's inventory if it exists and can be taken."
         );
+        //List
+        System.out.println("LIST [ARG] : List all items of a location if arguments not given. The other argument accaptable is 'inventory' or 'all'."
+        );
         //Quit
         System.out.println("QUIT : quit the game.");
+        //GetExit
+        System.out.println("GETLOCATION : returns the Exits the player can go.");
     }
 
-    public static void go(Exit zone) throws InterruptedException {
+    private static void go(Exit zone) throws InterruptedException {
         if(!zone.isLocked()) {
             Command.currentLocation = zone.getDestination();
-            TurtleFunction.printConversation(Command.currentLocation.getDescription());
+            Command.currentLocation.goTo();
         }
         else{
-            TurtleFunction.printConversation("You cannot pass! Maybe you forgot something?");
+            TurtleFunction.print("You cannot pass! Maybe you forgot something?");
         }
     }
 
-    public static void look(Item item) {
-        if (item != null) {
-            System.out.println("\n\"" + item.getName().toUpperCase() + "\" :\n" + item.getDescription());
-        } else {
-                System.out.println("There's nothing here!");
+    private static boolean lookNPC(String[] words) throws InterruptedException {
+        ArrayList<NonPlayerCharacter> npcs = currentLocation.getNPC();
+        for (int i = 0; i < npcs.size(); i++) {
+            if(npcs.get(i).getName().equalsIgnoreCase(words[1]))
+            {
+                npcs.get(i).look();
+                return true;
+            }
         }
-        return;
+        return false;
+    }
+
+    private static void look(String[] words) throws InterruptedException {
+        if(words.length == 1) {
+            String description = Command.currentLocation.getDescription();
+            TurtleFunction.print(description);
+        } 
+        else if(words.length >= 2) {
+            String description = Command.currentLocation.getDescriptionOfItem(words[1]);
+            if(description != null)
+            TurtleFunction.print(description);
+            else {
+                Inventory inv = Command.ourSavior.getInventory();
+                description = inv.getDescriptionOf(words[1]);
+                if (description != null) {
+                    TurtleFunction.print(description + "This item is in the Babou inventory.");
+                    return;
+                }
+                if(!lookNPC(words))
+                TurtleFunction.print(words[1] + " is not exist.");               
+            }
+        }
     }
 
     public static Location getCurrentLocation() {
         return Command.currentLocation;
     }
 
-    public static void Interact(Character charac) {
-
+    public static void Interact(NonPlayerCharacter charac) throws InterruptedException {
+        charac.interact();
     }
 
     public static void Interact(Item item) {
-
+        item.use();
     }
 
-    public static void command(String cmd) throws InterruptedException {
+    public static void command(String cmd) throws InterruptedException, RawItemNotAllowedException {
         
         String[] words = cmd.split(" ");
         switch (words[0].toLowerCase()) {
             case "go":
                 if (words.length == 2) {
                     for (Exit e: currentLocation.getExit().values()) {
-                        if (e.getDestination().getName().equalsIgnoreCase(words[1]))
-                        go(e);
+                        if (e.getDestination().getName().equalsIgnoreCase(words[1])) {
+                            go(e);
+                            return;
+                        }
                     }
+                    if(Command.currentLocation.getName().equalsIgnoreCase(words[1]))
+                    System.out.println("You are already here!");
+                    else
+                    TurtleFunction.print("That direction doesn't exist! Write 'getexit' to know were you can go.");
+                }
+                else {
+                    TurtleFunction.print("'go' takes one argument. Write 'getexit' to know were you can go.");
                 }
                 break;
             
@@ -168,26 +212,128 @@ public class Command {
                 break;
 
             case "look":
-                String description = Command.currentLocation.getDescription();
-                TurtleFunction.printConversation(description);
+                Command.look(words);
                 break;
 
             case "take":
+                if(words.length >= 2) {
+                    take(words[1]);
+                } 
+                else {
+                    TurtleFunction.print("'Take' takes 1 more argument.");
+                }
                 break;
 
             case "use":
+                if(words.length == 2)
+                Command.use(words[1]);
+                else
+                TurtleFunction.print("Use requires one argument. Write 'help' to see what you can do with 'Use'.");
                 break;
 
             case "attack":
                 break;
 
+            case "list":
+                Command.list(words);
+                break;
+
             case "quit":
-            Command.quit();
+                Command.quit();
+                break;
+            
+            case "getexit":
+                Command.getexit();
                 break;
 
             default:
-                System.out.println("\"" + words[0].toLowerCase() + "\" is  a unknown command");
+                if(words[0].equalsIgnoreCase(""))
+                TurtleFunction.print("Command is empty. Write help if you do not know the commands.");
+                else
+                TurtleFunction.print("\"" + words[0].toLowerCase() + "\" is a unknown command. Write 'help' to know all commands available.");
                 break;
+        }
+    }
+
+    private static void use(String string) throws InterruptedException {
+        Inventory inv = ourSavior.getInventory();
+        if(inv.isOnInventory(string))
+        inv.useItem(string);
+        else
+        TurtleFunction.print("You can not use the " + string);
+    }
+
+    private static void take(String string) throws RawItemNotAllowedException, InterruptedException {
+        Inventory inv = Command.currentLocation.getInventory();
+        Item picked;
+        if(inv.isOnInventory(string) && inv.isPickable(string)) {
+            picked = inv.pickItem(string);
+            ourSavior.addItem(picked);
+            TurtleFunction.print("You picked the " + string);
+            return;
+        }
+        
+        else if(!inv.isOnInventory(string))  {
+            TurtleFunction.print(string + " does not exist in this place.");
+            return;
+        }
+        if(!inv.isPickable(string)) {
+            TurtleFunction.print("You can not take " + string + ".");
+            return;
+        }
+    }
+
+    private static void list(String[] words) throws InterruptedException {
+        if(words.length == 1) {
+            Inventory inv = Command.currentLocation.getInventory();
+            ArrayList<String> itemList = inv.getListItem();
+            TurtleFunction.print("Voici une liste d'objets de \"" + Command.currentLocation.getName() + "\" :\n");
+            for(int i=0 ; i < itemList.size() ; i++) {
+                System.out.println(itemList.get(i));
+            }
+        } else if(words.length >= 2) {
+            switch(words[1]) {
+
+            case "inventory":
+                Inventory inv = Command.ourSavior.getInventory();
+                ArrayList<String> itemList = inv.getListItem();
+                if(itemList.size() > 0)
+                TurtleFunction.print("Voici une liste de l'inventaire de Babou :\n");
+                else
+                TurtleFunction.print("Babou n'a pas d'objet dans son inventaire.\n");
+                for(int i=0 ; i < itemList.size() ; i++) {
+                    System.out.println(itemList.get(i));
+                }
+                break;
+
+            case "creature":
+            ArrayList<NonPlayerCharacter> npcs = Command.currentLocation.getNPC();
+                for(int i=0 ; i < npcs.size() ; i++) {
+                    TurtleFunction.print(" - " + npcs.get(i).getName() + "\n");
+                }
+                break;
+
+            case "all":
+                Inventory inv1 = Command.ourSavior.getInventory();
+                Inventory inv2 = Command.currentLocation.getInventory();
+                ArrayList<String> itemListLocation = inv2.getListItem();
+                ArrayList<String> itemListHero = inv1.getListItem();
+                TurtleFunction.print("Voici une liste d'objets de \"" + Command.currentLocation.getName() + "\" :\n");
+                for(int i=0 ; i < itemListLocation.size() ; i++) {
+                    TurtleFunction.print(" - " + itemListLocation.get(i) + "\n");
+                }
+                TurtleFunction.print("---\nVoici une liste de l'inventaire de Babou :\n");
+                for(int i=0 ; i < itemListHero.size() ; i++) {
+                    TurtleFunction.print(" - " + itemListHero.get(i) + "\n");
+                }
+            }
+        }
+    }
+
+    private static void getexit() throws InterruptedException {
+        TurtleFunction.print("You can go to : ");
+        for(Exit e : Command.currentLocation.getExit().values()) {
+            TurtleFunction.print("\n" + e.getDestination().getName());
         }
     }
 }

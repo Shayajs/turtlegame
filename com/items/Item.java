@@ -1,6 +1,9 @@
 package com.items;
 
+import java.io.IOException;
 import java.lang.Math;
+
+import com.utils.TurtleFunction;
 
 /**
  * An item is a descriptor object of all type of item existable.
@@ -16,6 +19,7 @@ public abstract class Item {
     private String name;
     private short idItem;
     private String description;
+    protected boolean isWieldy;
 
     /**
      * Constructor to create an item object with a name.
@@ -108,6 +112,10 @@ public abstract class Item {
      */
     public String getDescription() {
         return this.description;
+    }
+
+    public void setDescriptionFile(String filename) throws IOException {
+        this.description = TurtleFunction.getDescriptionFile(filename);
     }
 
     public abstract void use();

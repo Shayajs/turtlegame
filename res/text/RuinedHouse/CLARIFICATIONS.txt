@@ -1,0 +1,5 @@
+J'ai ajouté un sideboard mais techniquement, il a pas besoin d'exister réellement parce qu'une fois qu'on l'a vu et que ça dit qu'il y a une clé et une photo, on peut les regarder sans se déplacer au sideboard.
+On ne peut plus utiliser la clé après l'avoir déjà utilisée
+On ne peut plus la prendre après l'avoir déja prise, ni la regarder
+
+quit_np: ce qui s'affiche quand on veut aller dehors mais qu'on a pas ouvert la porte. 

@@ -6,24 +6,24 @@ import com.items.type.UselessItem;
 /**
  * This item is usely placed for location
  */
-public class StorageShelf extends Item implements UselessItem {
-    public StorageShelf(Item item) {
+public class Shelf extends Item implements UselessItem, Unwieldy {
+    public Shelf(Item item) {
         super(item);
     }
 
-    public StorageShelf(String name) {
+    public Shelf(String name) {
         super(name);
     }
 
-    public StorageShelf(String name, short id) {
+    public Shelf(String name, short id) {
         super(name, id);
     }
 
-    public StorageShelf(String name, String description) {
+    public Shelf(String name, String description) {
         super(name, description);
     }
 
-    public StorageShelf(String name, short id, String description) {
+    public Shelf(String name, short id, String description) {
         super(name, id, description);
     }
 

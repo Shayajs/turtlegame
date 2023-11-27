@@ -2,8 +2,9 @@ package com.items.wieldy.other;
 
 import com.items.Item;
 import com.items.type.UselessItem;
+import com.items.wieldy.Wieldy;
 
-public class Poster extends Item implements UselessItem{
+public class Poster extends Item implements UselessItem, Wieldy{
     public Poster(Item item) {
         super(item);
     }

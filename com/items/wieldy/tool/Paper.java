@@ -2,8 +2,9 @@ package com.items.wieldy.tool;
 
 import com.items.Item;
 import com.items.type.ToolItem;
+import com.items.wieldy.Wieldy;
 
-public class Paper extends Item implements ToolItem {
+public class Paper extends Item implements ToolItem, Wieldy {
     public Paper(Item item) {
         super(item);
     }

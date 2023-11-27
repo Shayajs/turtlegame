@@ -2,8 +2,9 @@ package com.items.wieldy.other;
 
 import com.items.Item;
 import com.items.type.UselessItem;
+import com.items.wieldy.Wieldy;
 
-public class Stone extends Item implements UselessItem{
+public class Stone extends Item implements UselessItem, Wieldy{
     public Stone(Item item) {
         super(item);
     }

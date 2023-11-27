@@ -2,8 +2,9 @@ package com.items.wieldy.other;
 
 import com.items.Item;
 import com.items.type.UselessItem;
+import com.items.wieldy.Wieldy;
 
-public class FamilyPortrait extends Item implements UselessItem{
+public class FamilyPortrait extends Item implements UselessItem, Wieldy{
     public FamilyPortrait(Item item) {
         super(item);
     }

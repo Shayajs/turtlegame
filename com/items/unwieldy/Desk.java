@@ -6,7 +6,7 @@ import com.items.type.UselessItem;
 /**
  * This item is usely placed for location
  */
-public class Desk extends Item implements UselessItem {
+public class Desk extends Item implements UselessItem, Unwieldy {
     public Desk(Item item) {
         super(item);
     }

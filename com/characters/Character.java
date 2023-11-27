@@ -25,4 +25,8 @@ public abstract class Character {
     public void addItem(Item item) throws RawItemNotAllowedException {
         this.inventory.addItem(item);
     }
+
+    public Inventory getInventory() {
+        return this.inventory;
+    }
 }

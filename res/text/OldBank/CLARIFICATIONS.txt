@@ -1,0 +1,9 @@
+display_success: dialogue si on a réussi l'épreuve
+
+display_gameOver: texte affiché si on perd ici
+
+talk_false: ce que le singe dit si on a répondu faux
+talk_true :  ce que le singe dit si la réponse est correcte
+
+talk1: premier dialogue
+talk2: dialogue après toute l'épreuve

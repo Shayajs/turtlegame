@@ -6,7 +6,7 @@ import com.items.type.UselessItem;
 /**
  * This item is usely placed for location
  */
-public class Sideboard extends Item implements UselessItem {
+public class Sideboard extends Item implements UselessItem, Unwieldy {
     public Sideboard(Item item) {
         super(item);
     }

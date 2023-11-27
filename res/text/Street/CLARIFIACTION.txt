@@ -1,0 +1,7 @@
+attack1: quand on attaque pour la première fois les champis
+attack2: quand on attaque pas pour la prmière fois les champis
+
+look1: regarde sans leur avoir parler ni essayer de mordre
+look2: regarder sinon
+
+talk1 pour la première conversation et talk2 pour après
