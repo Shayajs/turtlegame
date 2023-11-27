@@ -8,7 +8,6 @@ import com.characters.NonPlayerCharacter;
 import com.items.*;
 import com.items.unwieldy.*;
 import com.items.wieldy.other.*;
-import com.items.wieldy.tool.Diary;
 import com.items.wieldy.tool.*;
 //import com.items.wieldy.weapon.*;
 public class ProjetInit {
@@ -27,6 +26,7 @@ public class ProjetInit {
         */ 
 
         //All the NPC
+
         NonPlayerCharacter mushroomBrothers = new NonPlayerCharacter("MushroomBrothers");
         NonPlayerCharacter rabbit = new NonPlayerCharacter("Rabbit");
         NonPlayerCharacter frog = new NonPlayerCharacter("Frog");
@@ -163,4 +163,10 @@ public class ProjetInit {
         Command.init(bunker);
 
     }
+
+    public static void loop() {
+        do {
+
+        }while(!Command.isThisTheEnd());
+    } 
 }

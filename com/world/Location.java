@@ -31,6 +31,7 @@ public class Location {
         this.shortDescription = shortDescription;
         this.longDescription = longDescription;
         this.inventory = new Inventory();
+        this.npcs = new ArrayList<>();
     }
 
     public void addNPC(NonPlayerCharacter newCharacter) {

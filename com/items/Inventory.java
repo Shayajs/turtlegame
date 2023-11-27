@@ -151,15 +151,6 @@ public class Inventory {
         return null;
     }
 
-    public void printListWeaponItem() {
-        for(Item item : this.inventory.keySet()) {
-            if(item instanceof WeaponItem) {
-                System.out.print(item.getName() + " - ");
-            }
-        }
-        System.out.println();
-    }
-
     public void printListToolItem() {
         for(Item item : this.inventory.keySet()) {
             if(item instanceof ToolItem) {
@@ -171,21 +162,11 @@ public class Inventory {
 
     public void printListUselessItem() {
         for(Item item : this.inventory.keySet()) {
-            if(item instanceof WeaponItem) {
+            if(item instanceof UselessItem) {
                 System.out.print(item.getName() + " - ");
             }
         }
         System.out.println();
-    }
-
-    public ArrayList<Short> getIdListWeaponItem() {
-        ArrayList<Short> idList = new ArrayList<>();
-        for(Item item : this.inventory.keySet()) {
-            if(item instanceof WeaponItem) {
-                idList.add(item.getID());
-            }
-        }
-        return idList;
     }
 
     public ArrayList<Short> getIdListToolItem() {

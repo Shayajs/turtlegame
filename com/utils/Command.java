@@ -70,11 +70,11 @@ public class Command {
         thisIsTheEndBool = tite;
     } 
 
-    public boolean isThisTheEnd() {
+    public static boolean isThisTheEnd() {
         return thisIsTheEndBool;
     }
 
-    public void setGameOver(boolean gameOverOrNot) {
+    public static void setGameOver(boolean gameOverOrNot) {
         gameOverVar = gameOverOrNot;
     }
 
