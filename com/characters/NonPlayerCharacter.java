@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import com.items.Inventory;
 import com.utils.TurtleFunction;
+import com.world.Exit;
 
 public class NonPlayerCharacter extends Character{
 
@@ -18,6 +19,8 @@ public class NonPlayerCharacter extends Character{
     private ArrayList<String> look2;
     private ArrayList<String> talk1;
     private ArrayList<String> talk2;
+
+    private Exit exitToUnlockTalking = null;
 
     public NonPlayerCharacter(String name, Inventory inventory) throws IOException {
         super(name, inventory);
@@ -64,12 +67,13 @@ public class NonPlayerCharacter extends Character{
     }
 
     public void attack() throws InterruptedException{
-        if(firstTime) {
+        if(firstTime && attack1 != null) {
             TurtleFunction.print(this.attack1);
             lookedat();
         }
-        else
+        else if(!firstTime && attack2 != null)
         TurtleFunction.print(this.attack2);
+        else TurtleFunction.print("You can not attack " + this.name);
     }
 
     public void look() throws InterruptedException {
@@ -81,10 +85,16 @@ public class NonPlayerCharacter extends Character{
         TurtleFunction.print(this.look2);
     }
 
+    public void setExitUnlockable(Exit e) {
+        exitToUnlockTalking = e;
+    }
+
     public void interact() throws InterruptedException {
         if(firstTime) {
             TurtleFunction.print(this.talk1);
             lookedat();
+            if(exitToUnlockTalking != null)
+            exitToUnlockTalking.unlock();
         }
         else
         TurtleFunction.print(this.talk2);

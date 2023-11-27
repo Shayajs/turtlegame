@@ -51,9 +51,9 @@ public class Command {
         "HELP", //Fini
         "LOOK", //Fini
         "TAKE", //Fini
-        "USE",
+        "USE", //Fini
         "GETEXIT", //Fini
-        "ATTACK",
+        "ATTACK", //Fini
         "QUIT"  //Fini
         "LIST" //Fini
     */
@@ -215,6 +215,10 @@ public class Command {
                 Command.look(words);
                 break;
 
+            case "talk":
+                Command.talk(words);
+                break;
+                
             case "take":
                 if(words.length >= 2) {
                     take(words[1]);
@@ -232,6 +236,7 @@ public class Command {
                 break;
 
             case "attack":
+                Command.attack(words);
                 break;
 
             case "list":
@@ -253,6 +258,28 @@ public class Command {
                 TurtleFunction.print("\"" + words[0].toLowerCase() + "\" is a unknown command. Write 'help' to know all commands available.");
                 break;
         }
+    }
+
+    private static void attack(String[] words) throws InterruptedException {
+        ArrayList<NonPlayerCharacter> npcs = currentLocation.getNPC();
+        for (int i = 0; i < npcs.size(); i++) {
+            if(npcs.get(i).getName().equalsIgnoreCase(words[1]))
+            {
+                npcs.get(i).attack();
+                return;
+            }
+        }
+    }
+
+    private static void talk(String[] words) throws InterruptedException {
+        ArrayList<NonPlayerCharacter> npcs = currentLocation.getNPC();
+        for (int i = 0; i < npcs.size(); i++) {
+            if(npcs.get(i).getName().equalsIgnoreCase(words[1]))
+            {
+                npcs.get(i).interact();
+                return;
+            }
+        }   
     }
 
     private static void use(String string) throws InterruptedException {
@@ -287,7 +314,7 @@ public class Command {
         if(words.length == 1) {
             Inventory inv = Command.currentLocation.getInventory();
             ArrayList<String> itemList = inv.getListItem();
-            TurtleFunction.print("Voici une liste d'objets de \"" + Command.currentLocation.getName() + "\" :\n");
+            TurtleFunction.print("This a object list of  \"" + Command.currentLocation.getName() + "\" :\n");
             for(int i=0 ; i < itemList.size() ; i++) {
                 System.out.println(itemList.get(i));
             }
@@ -298,9 +325,9 @@ public class Command {
                 Inventory inv = Command.ourSavior.getInventory();
                 ArrayList<String> itemList = inv.getListItem();
                 if(itemList.size() > 0)
-                TurtleFunction.print("Voici une liste de l'inventaire de Babou :\n");
+                TurtleFunction.print("This a object list of Kiddo :\n");
                 else
-                TurtleFunction.print("Babou n'a pas d'objet dans son inventaire.\n");
+                TurtleFunction.print("Kiddo has no item in inventory.\n");
                 for(int i=0 ; i < itemList.size() ; i++) {
                     System.out.println(itemList.get(i));
                 }

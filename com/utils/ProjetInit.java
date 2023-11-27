@@ -221,6 +221,10 @@ public class ProjetInit {
         // Initialization of all others commands
         Command.init(bunker, babou);
 
+        //These three npc can make available the bank location
+        rabbit.setExitUnlockable(streetToBank);
+        dinolou.setExitUnlockable(streetToBank);
+        frog.setExitUnlockable(streetToBank);
     }
 
     public static void start() throws IOException, InterruptedException, RawItemNotAllowedException {
