@@ -26,6 +26,13 @@ public class Location {
         this.npcs = npcs;
     }
 
+    public Location(String name, String shortDescription, String longDescription) {
+        this.name = name;
+        this.shortDescription = shortDescription;
+        this.longDescription = longDescription;
+        this.inventory = new Inventory();
+    }
+
     public void addNPC(NonPlayerCharacter newCharacter) {
         if(!this.npcs.contains(newCharacter)) {
             npcs.add(newCharacter);
@@ -34,9 +41,13 @@ public class Location {
 
         }
     }
-    
+
     public void addItems(Item item) throws RawItemNotAllowedException {
         this.inventory.addItem(item);
+    }
+
+    public void addExit(Exit exit) {
+        this.exits.put(exit.getName(), exit);
     }
 
     public String getDescription(){

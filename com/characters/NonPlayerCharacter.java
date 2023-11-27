@@ -34,4 +34,8 @@ public class NonPlayerCharacter extends Character{
     public void lookedat(){
         this.firstTime = false;
     }
+
+    public void interact() throws InterruptedException {
+        TurtleFunction.printConversation(this.conversation);
+    }
 }
