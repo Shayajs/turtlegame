@@ -107,9 +107,13 @@ public class Command {
         System.out.println("QUIT : quit the game.");
     }
 
-    public static void go(Exit zone) {
+    public static void go(Exit zone) throws InterruptedException {
         if(!zone.isLocked()) {
             Command.currentLocation = zone.getDestination();
+            TurtleFunction.printConversation(Command.currentLocation.getDescription());
+        }
+        else{
+            TurtleFunction.printConversation("You cannot pass! Maybe you forgot something?");
         }
     }
 
@@ -122,7 +126,7 @@ public class Command {
         return;
     }
 
-    public static Location getLocation() {
+    public static Location getCurrentLocation() {
         return Command.currentLocation;
     }
 
@@ -134,7 +138,7 @@ public class Command {
 
     }
 
-    public static void command(String cmd) {
+    public static void command(String cmd) throws InterruptedException {
         
         String[] words = cmd.split(" ");
         switch (words[0].toLowerCase()) {

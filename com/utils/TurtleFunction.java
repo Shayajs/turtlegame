@@ -19,7 +19,6 @@ public class TurtleFunction {
             while((paragraph = br.readLine()) != null) {
                 conversation.add(paragraph);
             }
-
             br.close();
             fr.close();
         }

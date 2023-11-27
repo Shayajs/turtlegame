@@ -178,7 +178,9 @@ public class ProjetInit {
     public static void start() throws IOException, InterruptedException {
         ArrayList<String> firstDialog = TurtleFunction.getConversationNPC("StartDialog.txt");
         TurtleFunction.printConversation(firstDialog);
+        TurtleFunction.printConversation(Command.getCurrentLocation().getDescription());
         do {
+
             Command.setThisIsTheEnd(true);
         }while(!Command.isThisTheEnd());
     } 
