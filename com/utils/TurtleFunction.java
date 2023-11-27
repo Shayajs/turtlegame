@@ -1,6 +1,5 @@
 package com.utils;
 import java.util.ArrayList;
-import java.util.Scanner;
 import java.io.*;
 
 public class TurtleFunction {
@@ -35,21 +34,19 @@ public class TurtleFunction {
             Thread.sleep(5);
             System.out.print(chars);
         }
-        System.out.print("\n");
+        //System.out.print("\n");
     }
 
     public static void printConversation(ArrayList<String> strs, int waitSecondesBeforeDisplay) throws InterruptedException {
         
-        Scanner sc = new Scanner(System.in);
         
         for(String str: strs) {
             TurtleFunction.printConversation(str);
             Thread.sleep(waitSecondesBeforeDisplay);
             System.out.print("\n");
             System.out.print("Enter to continue.\r");
-            sc.nextLine();
+            Command.scanner.nextLine();
         }
-        sc.close();
     }
 
     public static void printConversation(ArrayList<String> strs) throws InterruptedException {

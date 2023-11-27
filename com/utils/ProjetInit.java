@@ -4,7 +4,9 @@ import com.world.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
+import com.characters.Hero;
 import com.characters.NonPlayerCharacter;
 import com.items.*;
 import com.items.unwieldy.*;
@@ -25,6 +27,10 @@ public class ProjetInit {
         - Set the location an available exit
         And the location obviously.
         */ 
+
+        // OUUUUR HEROOOOO !
+
+        Hero babou = new Hero("Babou", new Inventory());
 
         //All the NPC
 
@@ -171,7 +177,7 @@ public class ProjetInit {
         secretForest.addExit(secretForestToForest);
 
         // Initialization of all others commands
-        Command.init(bunker);
+        Command.init(bunker, babou);
 
     }
 
@@ -180,8 +186,9 @@ public class ProjetInit {
         TurtleFunction.printConversation(firstDialog);
         TurtleFunction.printConversation(Command.getCurrentLocation().getDescription());
         do {
-
-            Command.setThisIsTheEnd(true);
+            TurtleFunction.printConversation("\nWhat do like want to do? cmd: ");
+            String userInput = Command.scanner.nextLine();
+            Command.command(userInput);
         }while(!Command.isThisTheEnd());
     } 
 }

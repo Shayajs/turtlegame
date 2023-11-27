@@ -2,6 +2,9 @@ package com.utils;
 
 import com.world.*;
 
+import java.util.Scanner;
+
+import com.characters.Hero;
 import com.items.Item;
 
 /**
@@ -53,13 +56,17 @@ public class Command {
     private static boolean thisIsTheEndBool;
     private static boolean gameOverVar;
     private static Location currentLocation;
+    public static Scanner scanner;
+    private static Hero ourSavior;
 
-    public static void init(Location firstLocation) {
+    public static void init(Location firstLocation, Hero hero) {
         if (!alreadyInitialized) {
             currentLocation = firstLocation;
+            ourSavior = hero;
             thisIsTheEndBool = false;
             gameOverVar = false;
             alreadyInitialized = true;
+            scanner = new Scanner(System.in);
         }
         else {
             System.out.println("Command has been initialized");
@@ -85,6 +92,11 @@ public class Command {
     public static void quit() {
         System.out.println("Quitting the game...");
         System.exit(0);
+        Command.scanner.close();
+    }
+
+    public static Hero getHero() {
+        return Command.ourSavior;
     }
 
     public static void help() {
@@ -152,6 +164,7 @@ public class Command {
                 break;
             
             case "help":
+                Command.help();
                 break;
 
             case "look":
@@ -167,6 +180,7 @@ public class Command {
                 break;
 
             case "quit":
+            Command.quit();
                 break;
 
             default:
