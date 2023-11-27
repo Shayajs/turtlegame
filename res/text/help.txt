@@ -1,1 +1,21 @@
-All instructions : LOOK, HELP, TAKE, TALK, USE, GO
+GO : the GO command is followed by the name of the neighbor location the
+    player wants to go. In case the location exists and the exit can be crossed, the hero
+    goes there, otherwise he stays in the same room. In each case, a display will indicate
+    what happens."
+
+USE ARG : If the ARG is in hero's inventory, and if the item can be usable, you can use ARG 
+
+HELP : indicates the set of available commands.
+
+TALK ARG : Talk to NPC.
+
+LOOK : displays a description of the current location if no argument is given,
+        or the specified item/person
+
+TAKE : adds the specified item to the hero's inventory if it exists and can be taken.
+
+LIST [ARG] : List all items of a location if arguments not given. The others arguments accaptable are 'inventory', 'all' and 'creature'.
+
+QUIT : quit the game.
+
+GETEXIT : returns the Exits the player can go.

@@ -2,6 +2,7 @@ package com.utils;
 
 import com.world.*;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -104,29 +105,10 @@ public class Command {
         return Command.ourSavior;
     }
 
-    public static void help() {
-        //Go
-        System.out.println("GO : the GO command is followed by the name of the neighbor location the" + //
-            " player wants to go. In case the location exists and the exit can be crossed, the hero" + //
-            " goes there, otherwise he stays in the same room. In each case, a display will indicate" + //
-            " what happens."
-        );
-        //Help
-        System.out.println("HELP indicates the set of available commands.");
-        //Look
-        System.out.println("LOOK : displays a description of the current location if no argument is given," + //
-        " or the specified item/person/room."
-        );
-        //Take
-        System.out.println("TAKE : adds the specified item to the hero's inventory if it exists and can be taken."
-        );
-        //List
-        System.out.println("LIST [ARG] : List all items of a location if arguments not given. The other argument accaptable is 'inventory' or 'all'."
-        );
-        //Quit
-        System.out.println("QUIT : quit the game.");
-        //GetExit
-        System.out.println("GETLOCATION : returns the Exits the player can go.");
+    public static void help() throws IOException {
+        ArrayList<String> helps = TurtleFunction.getConversationNPC("res/text/help.txt");
+        for(String str : helps)
+        System.out.println(str);
     }
 
     private static void go(Exit zone) throws InterruptedException {
