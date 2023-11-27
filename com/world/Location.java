@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Map;
 
 import com.characters.NonPlayerCharacter;
-import com.characters.RawCharacterNotAllowedException;
 import com.items.Inventory;
 /**
  * 
