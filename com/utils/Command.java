@@ -167,7 +167,7 @@ public class Command {
         item.use();
     }
 
-    public static void command(String cmd) throws InterruptedException, RawItemNotAllowedException {
+    public static void command(String cmd) throws InterruptedException, RawItemNotAllowedException, IOException {
         
         String[] words = cmd.split(" ");
         switch (words[0].toLowerCase()) {
