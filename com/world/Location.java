@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Map;
 
 import com.characters.NonPlayerCharacter;
+import com.characters.RawCharacterNotAllowedException;
 import com.items.Inventory;
 /**
  * 
@@ -17,13 +18,22 @@ public class Location {
     private boolean firsttime = true;
     private ArrayList<NonPlayerCharacter> npcs;
 
-    public Location(String n, String sd, String ld,  Map<String, Exit> exits, Inventory inventory, ArrayList<NonPlayerCharacter> npcs) {
-        this.name = n;
-        this.shortDescription = sd;
-        this.longDescription = ld;
+    public Location(String name, String shortDescription, String longDescription,  Map<String, Exit> exits, Inventory inventory, ArrayList<NonPlayerCharacter> npcs) {
+        this.name = name;
+        this.shortDescription = shortDescription;
+        this.longDescription = longDescription;
         this.exits = exits;
         this.inventory = inventory;
         this.npcs = npcs;
+    }
+
+    public void addNPC(NonPlayerCharacter newCharacter) {
+        if(!this.npcs.contains(newCharacter)) {
+            npcs.add(newCharacter);
+        }
+        else {
+
+        }
     }
 
     public String getDescription(){
