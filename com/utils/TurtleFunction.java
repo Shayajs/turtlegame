@@ -10,7 +10,8 @@ public class TurtleFunction {
 
         try {
         // Open the file
-            File conversationFile = new File(filename);
+            File conversationFile = new File("/res/" + filename);
+            conversationFile.createNewFile();
             // Get a reader for the file
             FileReader fr = new FileReader(conversationFile);
             // Get a Buffer Reader

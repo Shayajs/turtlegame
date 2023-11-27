@@ -101,7 +101,7 @@ public class ProjetInit {
         /*
          * In order :
          * - Creation of 2 exits : to Street and to Secret Forest (The last one is locked)
-         * - Add 1 Items unwieldy : Not a Rock, THE Rock, a big one.
+         * - Add 2 Items unwieldy : Not a Rock, THE Rock, a big one and a branch (decoration).
          * - Add 3 NPC : A rabbit, a frog and DINOLOU !
          * - Add these six objects to Location and add 2 types of Description : A short and a long one.
          * - We explain to street than the forest is an available exit.
@@ -112,8 +112,10 @@ public class ProjetInit {
         String forestShortDescription = "";
         String forestLongDescription = "";
         Item rock = new TheRock("Rock", "Not a Rock, THE Rock, a big one");
+        Item branch = new Branch("Branch", "Just a dead branch in the ground.");
         Location forest = new Location("Forest", forestShortDescription, forestLongDescription);
         forest.addItem(rock);
+        forest.addItem(branch);
         forest.addExit(forestToStreet);
         forest.addExit(forestToSecretForest);
         forest.addNPC(rabbit);
