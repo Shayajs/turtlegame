@@ -1,15 +1,21 @@
 package com.characters;
 
+import java.io.IOException;
+import java.util.ArrayList;
+
 import com.items.Inventory;
+import com.utils.TurtleFunction;
 
 public class NonPlayerCharacter extends Character{
 
     private String shortDescription;
     private String longDescription;
     private boolean firstTime = true;
+    private ArrayList<String> conversation;
 
-    public NonPlayerCharacter(String n, Inventory inventory) {
-        super(n, inventory);
+    public NonPlayerCharacter(String name, Inventory inventory) throws IOException {
+        super(name, inventory);
+        this.conversation = TurtleFunction.getConversationNPC(name + "Conv.txt");
     }
 
     public String getDescription(){
