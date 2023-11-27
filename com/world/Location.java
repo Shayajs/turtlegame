@@ -38,11 +38,11 @@ public class Location {
             npcs.add(newCharacter);
         }
         else {
-
+            System.out.println(newCharacter.getName() + " is already in this place.");
         }
     }
 
-    public void addItems(Item item) throws RawItemNotAllowedException {
+    public void addItem(Item item) throws RawItemNotAllowedException {
         this.inventory.addItem(item);
     }
 

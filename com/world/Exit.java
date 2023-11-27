@@ -2,6 +2,7 @@ package com.world;
 
 public class Exit {
     private String name;
+    private String messageIfLocked = null;
     private Location destination;
     private String description;
     private boolean locked;
@@ -28,6 +29,19 @@ public class Exit {
 
     public void unlock(){
         this.locked = false;
+    }
+
+    public void setMessageIfLocked(String message) {
+        this.messageIfLocked = message;
+    }
+
+    public String messageForLockedExit() {
+        if(messageIfLocked != null) {
+            return messageIfLocked;
+        }
+        else {
+            return "This emplacement cannot be accessed. Maybe you forgot something?";
+        }
     }
 
     public Location getDestination(){

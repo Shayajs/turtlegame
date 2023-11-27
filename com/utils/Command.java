@@ -1,6 +1,7 @@
 package com.utils;
 
 import com.world.*;
+
 import com.items.Item;
 
 /**
@@ -36,7 +37,9 @@ import com.items.Item;
 
 public class Command {
 
-    protected static String[] cmd = {
+    /*
+        COMMANDS :
+
         "GO",   //FINI
         "HELP", //Fini
         "LOOK",
@@ -45,9 +48,39 @@ public class Command {
         "GETLOCATION", //Fini
         "ATTACK",
         "QUIT"  //Fini
-    };
+    */
+    private static boolean alreadyInitialized = false;
+    private static boolean thisIsTheEndBool;
+    private static boolean gameOverVar;
+    private static Location currentLocation;
 
-    protected static Location currentLocation;
+    public static void init(Location firstLocation) {
+        if (!alreadyInitialized) {
+            currentLocation = firstLocation;
+            thisIsTheEndBool = false;
+            gameOverVar = false;
+            alreadyInitialized = true;
+        }
+        else {
+            System.out.println("Command has been initialized");
+        }
+    }
+
+    public static void setThisIsTheEnd(boolean tite) {
+        thisIsTheEndBool = tite;
+    } 
+
+    public boolean isThisTheEnd() {
+        return thisIsTheEndBool;
+    }
+
+    public void setGameOver(boolean gameOverOrNot) {
+        gameOverVar = gameOverOrNot;
+    }
+
+    public boolean isGameOver() {
+        return gameOverVar;
+    }
 
     public static void quit() {
         System.out.println("Quitting the game...");
@@ -75,7 +108,9 @@ public class Command {
     }
 
     public static void go(Exit zone) {
-        Command.currentLocation = zone.getDestination();
+        if(!zone.isLocked()) {
+            Command.currentLocation = zone.getDestination();
+        }
     }
 
     public static void look(Item item) {
@@ -100,6 +135,7 @@ public class Command {
     }
 
     public static void command(String cmd) {
+        
         String[] words = cmd.split(" ");
         switch (words[0].toLowerCase()) {
             case "go":

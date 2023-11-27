@@ -1,5 +1,3 @@
 package com.items.type;
 
-public interface UselessItem {
-    
-}
+public interface UselessItem {}

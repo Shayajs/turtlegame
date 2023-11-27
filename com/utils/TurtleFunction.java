@@ -39,17 +39,22 @@ public class TurtleFunction {
         System.out.print("\n");
     }
 
-    public static void printConversation(ArrayList<String> strs) throws InterruptedException {
+    public static void printConversation(ArrayList<String> strs, int waitSecondesBeforeDisplay) throws InterruptedException {
         
         Scanner sc = new Scanner(System.in);
         
         for(String str: strs) {
             TurtleFunction.printConversation(str);
-            Thread.sleep(2000);
+            Thread.sleep(waitSecondesBeforeDisplay);
             System.out.print("\n");
             System.out.print("Enter to continue.\r");
             sc.nextLine();
         }
         sc.close();
+    }
+
+    public static void printConversation(ArrayList<String> strs) throws InterruptedException {
+        int waitSecondesBeforeDisplay = 2000;
+        TurtleFunction.printConversation(strs, waitSecondesBeforeDisplay);
     }
 }

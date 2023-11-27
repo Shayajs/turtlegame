@@ -6,24 +6,24 @@ import com.items.type.UselessItem;
 /**
  * This item is usely placed for location
  */
-public class Grass extends Item implements UselessItem {
-    public Grass(Item item) {
+public class TheRock extends Item implements UselessItem {
+    public TheRock(Item item) {
         super(item);
     }
 
-    public Grass(String name) {
+    public TheRock(String name) {
         super(name);
     }
 
-    public Grass(String name, short id) {
+    public TheRock(String name, short id) {
         super(name, id);
     }
 
-    public Grass(String name, String description) {
+    public TheRock(String name, String description) {
         super(name, description);
     }
 
-    public Grass(String name, short id, String description) {
+    public TheRock(String name, short id, String description) {
         super(name, id, description);
     }
 
@@ -32,3 +32,4 @@ public class Grass extends Item implements UselessItem {
         throw new UnsupportedOperationException("'use' can't be used on Grass Items.");
     }
 }
+

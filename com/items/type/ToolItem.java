@@ -1,4 +1,3 @@
 package com.items.type;
 
-public interface ToolItem {
-}
+public interface ToolItem {}

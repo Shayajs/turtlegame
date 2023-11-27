@@ -18,6 +18,11 @@ public class NonPlayerCharacter extends Character{
         this.conversation = TurtleFunction.getConversationNPC(name + "Conv.txt");
     }
 
+    public NonPlayerCharacter(String name) throws IOException {
+        super(name, new Inventory());
+        this.conversation = TurtleFunction.getConversationNPC(name + "Conv.txt");
+    }
+
     public String getDescription(){
         if (this.firstTime){
             return longDescription;

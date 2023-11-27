@@ -1,6 +1,8 @@
 package com.characters;
 
 import com.items.Inventory;
+import com.items.Item;
+import com.items.RawItemNotAllowedException;
 
 public abstract class Character {
     protected String name;
@@ -10,7 +12,17 @@ public abstract class Character {
         this.name = name;
         this.inventory = inventory;
     }
+
+    public Character(String name){
+        this.name = name;
+        this.inventory = new Inventory();
+    }
+
     public String getName() {
         return name;
+    }
+
+    public void addItem(Item item) throws RawItemNotAllowedException {
+        this.inventory.addItem(item);
     }
 }
