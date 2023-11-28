@@ -8,6 +8,11 @@ public abstract class Character {
     protected String name;
     protected Inventory inventory;
 
+    /**
+     * A creation of a new character 
+     * @param name
+     * @param inventory
+     */
     public Character(String name, Inventory inventory){
         this.name = name;
         this.inventory = inventory;
