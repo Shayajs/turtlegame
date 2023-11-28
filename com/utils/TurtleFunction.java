@@ -3,6 +3,12 @@ import java.util.ArrayList;
 import java.io.*;
 
 public class TurtleFunction {
+    /**
+     * Return a list of lines in a file, especialy for the NPCs
+     * @param filename
+     * @return
+     * @throws IOException
+     */
     public static ArrayList<String> getConversationNPC(String filename) throws IOException {
         // Get the return variable
         ArrayList<String> conversation = new ArrayList<>();
@@ -27,6 +33,12 @@ public class TurtleFunction {
         return conversation;
     }
 
+    /**
+     * Get first line of a file
+     * @param filename
+     * @return
+     * @throws IOException
+     */
     public static String getDescriptionFile(String filename) throws IOException {
         ArrayList<String> text = TurtleFunction.getConversationNPC(filename);
         if(text.size() == 0)
@@ -35,7 +47,11 @@ public class TurtleFunction {
         return text.get(0);
     }
 
-    // Is a String by String function, insert one and unique String at once
+    /**
+     * Print with a cooldown between each char.
+     * @param str
+     * @throws InterruptedException
+     */
     public static void print(String str) throws InterruptedException {
         String[] charList = str.split("");
         for(String chars: charList) {
@@ -45,6 +61,12 @@ public class TurtleFunction {
         //System.out.print("\n");
     }
 
+    /**
+     * Print with a cooldown between each char.
+     * @param strs
+     * @param waitSecondesBeforeDisplay
+     * @throws InterruptedException
+     */
     public static void print(ArrayList<String> strs, int waitSecondesBeforeDisplay) throws InterruptedException {
         
         
@@ -57,6 +79,11 @@ public class TurtleFunction {
         }
     }
 
+    /**
+     * Print with a cooldown between each char.
+     * @param strs
+     * @throws InterruptedException
+     */
     public static void print(ArrayList<String> strs) throws InterruptedException {
         int waitSecondesBeforeDisplay = 2000;
         TurtleFunction.print(strs, waitSecondesBeforeDisplay);

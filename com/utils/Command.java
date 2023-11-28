@@ -22,25 +22,42 @@ import com.items.RawItemNotAllowedException;
  * You are of course free to add as many commands as you wish. Your design should allow
  * you to add newcommands in a simple way. Here is a quick description of how the basic
  * commands work in a console:
- *      —GO location:   the GO command is followed by the name of the neighbor location the
- *                      player wants to go. In case the location exists and the exit can be crossed, the hero
- *                      goes there, otherwise he stays in the same room. In each case, a display will indicate
- *                      what happens.
- *      
- *      —HELP:          indicates the set of availaible commands.
- * 
- *      —LOOK[arguments]: displays a description of the current location if no argument
- *                      is given. In case a list of arguments is provided, a display of all arguments that can
- *                      be observed is given.
- * 
- *      —TAKE argument: add(if possible) the argument to the hero’s items.
- * 
- *      —QUIT:          quit the game.
- *      —USE arg1 [arg2]: uses the object arg1. In case a second argument is given, the first
- *                      one is used with the second. For example, use gun bullet may load the gun, which
- *                      can be used after that.
- * 
- *      —GETLOCATION :  Return the current location
+ *     
+
+GO :
+    GO command is followed by the name of the neighbor location the
+    player wants to go. In case the location exists and the exit can be crossed, the hero
+    goes there, otherwise he stays in the same room. In each case, a display will indicate
+    what happens."
+
+USE ARG : 
+    If the ARG is in hero's inventory, and if the item can be usable, you can use ARG 
+
+HELP : 
+    Indicates the set of available commands.
+
+TALK ARG : 
+    Talk to NPC.
+
+ATTACK :
+    Attack the Mobs/NPC, or maybe not.
+
+LOOK :
+    displays a description of the current location if no argument is given, or the 
+    specified item/person
+
+TAKE : 
+    Adds the specified item to the hero's inventory if it exists and can be taken.
+
+LIST [ARG] : 
+    Lists all items of a location if arguments not given. The others arguments accaptable
+    are 'inventory', 'all' and 'creature'.
+
+QUIT : 
+    Quit the game.
+
+GETEXIT : 
+    Returns the Exits the player can go.
  */
 
 public class Command {
@@ -65,6 +82,11 @@ public class Command {
     public static Scanner scanner;
     private static Hero ourSavior;
 
+    /**
+     * Initialize all Commands
+     * @param firstLocation
+     * @param hero
+     */
     public static void init(Location firstLocation, Hero hero) {
         if (!alreadyInitialized) {
             currentLocation = firstLocation;
@@ -79,38 +101,70 @@ public class Command {
         }
     }
 
+    /**
+     * Set The End to true or false
+     * @param tite
+     */
     public static void setThisIsTheEnd(boolean tite) {
         thisIsTheEndBool = tite;
     } 
 
+    /**
+     * Get the End or not with a boolean
+     * @return
+     */
     public static boolean isThisTheEnd() {
         return thisIsTheEndBool;
     }
 
+    /**
+     * Set if this a Game Over or Not
+     * @param gameOverOrNot
+     */
     public static void setGameOver(boolean gameOverOrNot) {
         gameOverVar = gameOverOrNot;
     }
 
+    /**
+     * Get the bool Game Over
+     * @return
+     */
     public boolean isGameOver() {
         return gameOverVar;
     }
 
+    /**
+     * Quit the game
+     */
     public static void quit() {
         System.out.println("Quitting the game...");
         System.exit(0);
         Command.scanner.close();
     }
 
+    /**
+     * Return Hero
+     * @return
+     */
     public static Hero getHero() {
         return Command.ourSavior;
     }
 
+    /**
+     * Print all the help
+     * @throws IOException
+     */
     public static void help() throws IOException {
         ArrayList<String> helps = TurtleFunction.getConversationNPC("res/text/help.txt");
         for(String str : helps)
         System.out.println(str);
     }
 
+    /**
+     * Change the current location to another
+     * @param zone
+     * @throws InterruptedException
+     */
     private static void go(Exit zone) throws InterruptedException {
         if(!zone.isLocked()) {
             Command.currentLocation = zone.getDestination();
@@ -121,6 +175,12 @@ public class Command {
         }
     }
 
+    /**
+     * This is a aux function to look
+     * @param words
+     * @return
+     * @throws InterruptedException
+     */
     private static boolean lookNPC(String[] words) throws InterruptedException {
         ArrayList<NonPlayerCharacter> npcs = currentLocation.getNPC();
         for (int i = 0; i < npcs.size(); i++) {
@@ -133,6 +193,11 @@ public class Command {
         return false;
     }
 
+    /**
+     * Look if an item or a NPC is there. If true, print it
+     * @param words
+     * @throws InterruptedException
+     */
     private static void look(String[] words) throws InterruptedException {
         if(words.length == 1) {
             String description = Command.currentLocation.getDescription();
@@ -155,18 +220,38 @@ public class Command {
         }
     }
 
+    /**
+     * Return Current Location in Location object type
+     * @return
+     */
     public static Location getCurrentLocation() {
         return Command.currentLocation;
     }
 
+    /**
+     * Interact with a NPC
+     * @param charac
+     * @throws InterruptedException
+     */
     public static void Interact(NonPlayerCharacter charac) throws InterruptedException {
         charac.interact();
     }
 
+    /**
+     * Interact with an Item
+     * @param item
+     */
     public static void Interact(Item item) {
         item.use();
     }
 
+    /**
+     * This is the principal static method of Command. You enter a severals words separates with a space and it test all word in order to make a command. 
+     * @param cmd
+     * @throws InterruptedException
+     * @throws RawItemNotAllowedException
+     * @throws IOException
+     */
     public static void command(String cmd) throws InterruptedException, RawItemNotAllowedException, IOException {
         
         String[] words = cmd.split(" ");
@@ -242,6 +327,11 @@ public class Command {
         }
     }
 
+    /**
+     * Attack a NPC
+     * @param words
+     * @throws InterruptedException
+     */
     private static void attack(String[] words) throws InterruptedException {
         ArrayList<NonPlayerCharacter> npcs = currentLocation.getNPC();
         for (int i = 0; i < npcs.size(); i++) {
@@ -253,6 +343,11 @@ public class Command {
         }
     }
 
+    /**
+     * Talk to NPC, you can, if you want, speak with 'me', 'npc', 'kiddo' or 'any' but Turtle does not promise this will work perfectly with what you want.
+     * @param words
+     * @throws InterruptedException
+     */
     private static void talk(String[] words) throws InterruptedException {
         switch(words[1]) {
             case "npc":
@@ -276,11 +371,16 @@ public class Command {
                         return;
                     }
                 }
-                TurtleFunction.print("Try 'list creature' to know who to speak with.");
+                TurtleFunction.print("Try 'list creature' to know who to speak with. " + words[1] + " is not there.");
                 break;
-        }  
+        }
     }
 
+    /**
+     * Use an item if only item within inventory
+     * @param string
+     * @throws InterruptedException
+     */
     private static void use(String string) throws InterruptedException {
         Inventory inv = ourSavior.getInventory();
         if(inv.isOnInventory(string))
@@ -289,6 +389,12 @@ public class Command {
         TurtleFunction.print("You can not use the " + string);
     }
 
+    /**
+     * Take a object in area location
+     * @param string
+     * @throws RawItemNotAllowedException
+     * @throws InterruptedException
+     */
     private static void take(String string) throws RawItemNotAllowedException, InterruptedException {
         Inventory inv = Command.currentLocation.getInventory();
         Item picked;
@@ -309,6 +415,11 @@ public class Command {
         }
     }
 
+    /**
+     * List can take 1 or 0 arguments. The arguments allowed are 'inventory', 'creature', 'all'
+     * @param words
+     * @throws InterruptedException
+     */
     private static void list(String[] words) throws InterruptedException {
         if(words.length == 1) {
             Inventory inv = Command.currentLocation.getInventory();
@@ -359,6 +470,10 @@ public class Command {
         }
     }
 
+    /**
+     * Print all exits possible
+     * @throws InterruptedException
+     */
     private static void getexit() throws InterruptedException {
         TurtleFunction.print("You can go to : ");
         for(Exit e : Command.currentLocation.getExit().values()) {

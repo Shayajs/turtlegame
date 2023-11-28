@@ -103,23 +103,34 @@ public abstract class Item {
         return this.idItem;
     }
 
-
+    /**
+     * Set a new description 
+     * @param newDescription
+     */
     public void setDescription(String newDescription) {
         this.description = newDescription;
     }
+
     /**
      * Get the description of the item.
+     * @return
      */
     public String getDescription() {
         return this.description;
     }
 
+    /**
+     * Set the file to describe the Item
+     * @param filename
+     * @throws IOException
+     */
     public void setDescriptionFile(String filename) throws IOException {
         this.description = TurtleFunction.getDescriptionFile(filename);
     }
 
+    /**This is abstract to a futur usable.*/
     public abstract void use();
-    
+
     public String toString() {
         return "\"" + this.name + "\" : " +this.description;
     }

@@ -13,6 +13,9 @@ public class Inventory {
     // ex : inventory.put(Items("Couteau"), 2) -> We add two knives in the inventories
     Map<Item, Integer> inventory;
 
+    /**
+     * Get a new inventory to Location, NPC or Hero
+     */
     public Inventory() {
         this.inventory = new java.util.HashMap<>(); // Instance of the dictionary
     }
@@ -152,6 +155,9 @@ public class Inventory {
         return null;
     }
 
+    /**
+     * Print all tool item
+     */
     public void printListToolItem() {
         for(Item item : this.inventory.keySet()) {
             if(item instanceof ToolItem) {
@@ -161,6 +167,9 @@ public class Inventory {
         System.out.println();
     }
 
+    /**
+     * Print all Useless Items
+     */
     public void printListUselessItem() {
         for(Item item : this.inventory.keySet()) {
             if(item instanceof UselessItem) {
@@ -170,6 +179,10 @@ public class Inventory {
         System.out.println();
     }
 
+    /**
+     * Get all id tool item in the inventory
+     * @return
+     */
     public ArrayList<Short> getIdListToolItem() {
         ArrayList<Short> idList = new ArrayList<>();
         for(Item item : this.inventory.keySet()) {
@@ -180,6 +193,10 @@ public class Inventory {
         return idList;
     }
 
+    /**
+     * Get all id useless item in the inventory
+     * @return
+     */
     public ArrayList<Short> getIdListUselessItem() {
         ArrayList<Short> idList = new ArrayList<>();
         for(Item item : this.inventory.keySet()) {
@@ -190,6 +207,10 @@ public class Inventory {
         return idList;
     }
 
+    /**
+     * Returns all description of items
+     * @return
+     */
     public ArrayList<String> getListItemDescription() {
         ArrayList<String> listItems = new ArrayList<>();
         for (Item item: inventory.keySet()) {
@@ -198,6 +219,10 @@ public class Inventory {
         return listItems;
     }
 
+    /**
+     * Returns a list of Items' name 
+     * @return
+     */
     public ArrayList<String> getListItem() {
         ArrayList<String> listItems = new ArrayList<>();
         for (Item item: inventory.keySet()) {
@@ -206,6 +231,11 @@ public class Inventory {
         return listItems;
     }
 
+    /**
+     * Get a description of only one item, with the name
+     * @param nameItem
+     * @return
+     */
     public String getDescriptionOf(String nameItem) {
         Item itemToGet = this.findByName(nameItem);
         if(itemToGet != null)
@@ -213,11 +243,20 @@ public class Inventory {
         else return null;
     }
 
+    /**
+     * Check is the item, if exists in inventory, is pickable or not
+     * @param nameItem
+     * @return
+     */
     public boolean isPickable(String nameItem) {
         Item itemToCheck = findByName(nameItem);
         return itemToCheck != null && !(itemToCheck instanceof Unwieldy);
     }
 
+    /**
+     * Use an Item
+     * @param string
+     */
     public void useItem(String string) {
         Item item = findByName(string);
         item.use();

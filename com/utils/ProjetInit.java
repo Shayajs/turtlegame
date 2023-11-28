@@ -12,9 +12,8 @@ import com.items.wieldy.other.*;
 import com.items.wieldy.tool.*;
 //import com.items.wieldy.weapon.*;
 public class ProjetInit {
-    public static void init() throws RawItemNotAllowedException, IOException {
-        /*
-        Initialisation of global variables, command variables too.
+    /**
+     * Initialisation of global variables, command variables too.
         
         It starts with the creation of all NPC.
         It mades after that a creation of element for the locations :
@@ -24,19 +23,22 @@ public class ProjetInit {
         - A description
         - Set the location an available exit
         And the location obviously.
-        */ 
+     * @throws RawItemNotAllowedException
+     * @throws IOException
+     */ 
+    public static void init() throws RawItemNotAllowedException, IOException {
 
         // OUUUUR HEROOOOO !
         Hero babou = new Hero("Babou", new Inventory());
         
         //All the NPC
-
         NonPlayerCharacter mushroomBrothers = new NonPlayerCharacter("Mushrooms");
         NonPlayerCharacter rabbit = new NonPlayerCharacter("Rabbit");
         NonPlayerCharacter frog = new NonPlayerCharacter("Frog");
         NonPlayerCharacter dinolou = new NonPlayerCharacter("Dinolou");
         NonPlayerCharacter monkey = new NonPlayerCharacter("Monkey");
 
+        //Set files to NPC
         mushroomBrothers.setConversationPath(
             "res/text/Street/look1_mushrooms.txt",
             "res/text/Street/look2_mushrooms.txt",
@@ -101,8 +103,6 @@ public class ProjetInit {
         bunker.addItem(desk);
         bunker.addItem(door);
         bunker.addExit(bunkerToHouse);
-
-        //Bunker is the first location
 
         // ---- House ----
         /*
@@ -217,9 +217,10 @@ public class ProjetInit {
         Exit secretVillageToForest = new Exit("V2F", forest, "This is an exit to Forest from Secret Forest.");
         Location secretVillage = new Location("secretVillage","res\\text\\SecretVillage");
         secretVillage.addExit(secretVillageToForest);
+        //TODO: Add Butt, Turtle2
 
         // Initialization of all others commands
-        Command.init(bunker, babou);
+        Command.init(bunker, babou); //Bunker is the first location
 
         //These three npc can make available the bank location
         rabbit.setExitUnlockable(streetToBank);
@@ -227,6 +228,12 @@ public class ProjetInit {
         frog.setExitUnlockable(streetToBank);
     }
 
+    /**
+     * Start the game
+     * @throws IOException
+     * @throws InterruptedException
+     * @throws RawItemNotAllowedException
+     */
     public static void start() throws IOException, InterruptedException, RawItemNotAllowedException {
         Command.getCurrentLocation().goTo();
         do {
