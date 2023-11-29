@@ -65,12 +65,15 @@ public class MiniGame {
         }
     }
 
-    private void lost() throws InterruptedException {
+    private void lost() throws InterruptedException, IOException {
         if(chance > 0) {
             chance--;
             TurtleFunction.print(False + " You have " + chance + " last chance before game over.");
         }
         else {
+            ArrayList<String> gameOverText = TurtleFunction.getConversationNPC("res/text/OldBank/display_gameOver.txt");
+            TurtleFunction.print(gameOverText);
+            Command.gameOver(true);
         }
     }
 
