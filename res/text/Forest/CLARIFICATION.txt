@@ -3,3 +3,5 @@ talk2: dialogues tant que bébé hérisson est pas rendu
 talk3: dialogues après que bébé hérisson soit rendu
 
 go_village_np : ce qui s'affiche quand le joueur essaie d'aller au village sans savoir le chemin secret.
+
+use_hoglet : pour rendre le bébé hérisson une fois qu'on l'a. Après ça on peut aller au secret village

@@ -10,24 +10,24 @@ import com.utils.Command;
 import com.utils.TurtleFunction;
 import com.world.Exit;
 
-public class Key extends Item implements ToolItem, Wieldy {
-    public Key(Item item) {
+public class Hoglet extends Item implements ToolItem, Wieldy {
+    public Hoglet(Item item) {
         super(item);
     }
 
-    public Key(String name) {
+    public Hoglet(String name) {
         super(name);
     }
 
-    public Key(String name, short id) {
+    public Hoglet(String name, short id) {
         super(name, id);
     }
 
-    public Key(String name, String description) {
+    public Hoglet(String name, String description) {
         super(name, description);
     }
 
-    public Key(String name, short id, String description) {
+    public Hoglet(String name, short id, String description) {
         super(name, id, description);
     }
 
@@ -43,14 +43,8 @@ public class Key extends Item implements ToolItem, Wieldy {
             }
             Map<String, Exit> exits = Command.getCurrentLocation().getExit();
             Exit e = exits.get("H2S");
-            if(e != null) {
-                e.unlock();
-                try {
-                    TurtleFunction.print("You unlock the street location !");
-                } catch (InterruptedException e1) {
-                    e1.printStackTrace();
-                }
-            }
+            if(e != null)
+            e.unlock();
             else
             System.err.println("Error with unlock");
         }

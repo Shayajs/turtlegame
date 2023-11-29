@@ -68,14 +68,26 @@ public class TurtleFunction {
      * @throws InterruptedException
      */
     public static void print(ArrayList<String> strs, int waitSecondesBeforeDisplay) throws InterruptedException {
-        
-        
         for(String str: strs) {
             TurtleFunction.print(str);
             Thread.sleep(waitSecondesBeforeDisplay);
-            System.out.print("\n");
-            System.out.print("Enter to continue.\r");
+            System.out.print(" -> (Next)");
             Command.scanner.nextLine();
+        }
+    }
+
+    /**
+     * Print with no interruptions
+     * @param strs
+     * @param waiting
+     * @throws InterruptedException
+     */
+    public static void print(ArrayList<String> strs, boolean waiting) throws InterruptedException {
+        if(waiting)
+        print(strs);
+        else {
+            for(String str : strs)
+            print(str);
         }
     }
 

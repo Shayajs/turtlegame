@@ -1,5 +1,5 @@
 Dans CHAQUE dossier lieu, il y a:
-	-un go1(qu'il faut afficher quand on entre dans lieu(ça decrit souvent l'action d'aller au lieu)) (SAUF Pour le bunker, dans le go1, il y a l'introduction(ce qui est logique))
+	-un go1(qu'il faut afficher quand on entre dans lieu pour la première fois(ça decrit souvent l'action d'aller au lieu)) (SAUF Pour le bunker, dans le go1, il y a l'introduction(ce qui est logique))
 	-un desc(qu'il faut afficher après le go1 ou quand le joueur fait LOOK <lieu> )
 	-un go2(qu'il faut afficher à chaque fois qu'on entre dans un lieu pas pour la première fois)
 	-des <instruction> en fonction de ce qui est possible de faire dans le lieu

@@ -25,8 +25,9 @@ public class ProjetInit {
         And the location obviously.
      * @throws RawItemNotAllowedException
      * @throws IOException
+     * @throws InterruptedException
      */ 
-    public static void init() throws RawItemNotAllowedException, IOException {
+    public static void init() throws RawItemNotAllowedException, IOException, InterruptedException {
 
         // OUUUUR HEROOOOO !
         Hero babou = new Hero("Babou", new Inventory());
@@ -37,6 +38,8 @@ public class ProjetInit {
         NonPlayerCharacter frog = new NonPlayerCharacter("Frog");
         NonPlayerCharacter dinolou = new NonPlayerCharacter("Dinolou");
         NonPlayerCharacter monkey = new NonPlayerCharacter("Monkey");
+        NonPlayerCharacter butt = new NonPlayerCharacter("Butt");
+        NonPlayerCharacter turtle2 = new NonPlayerCharacter("Turtle2");
 
         //Set files to NPC
         mushroomBrothers.setConversationPath(
@@ -74,6 +77,20 @@ public class ProjetInit {
             "res/text/OldBank/look_monkey.txt",
             "res/text/OldBank/talk1_monkey.txt",
             "res/text/OldBank/talk2_monkey.txt"
+        );
+
+        butt.setConversationPath(
+            "res\\text\\SecretVillage\\look_butt.txt",
+            "res\\text\\SecretVillage\\look_butt.txt",
+            "res\\text\\SecretVillage\\talk_butt.txt",
+            "res\\text\\SecretVillage\\talk_butt.txt"
+        );
+
+        turtle2.setConversationPath(
+            "res\\text\\SecretVillage\\look_turtle2.txt",
+            "res\\text\\SecretVillage\\look_turtle2.txt",
+            "res\\text\\SecretVillage\\talk_turtle2.txt",
+            "res\\text\\SecretVillage\\talk_turtle2.txt"
         );
 
         // ---- Bunker ----
@@ -193,14 +210,18 @@ public class ProjetInit {
          * - Explain to street than the Bank is available.
          */
         Exit bankToStreet = new Exit("B2S", street, "This is an exit to go back to Street from Bank.");
+        bankToStreet.unlock();
         Item bench = new Bench("Bench", "It's not very comfortable but it will help you if you fall down.");
-        Item moneyCoin = new Money("money");
+        Item moneyCoin = new Money("Money");
+        Item chart = new Chart("Chart");
         Location bank = new Location("oldBank", "res\\text\\OldBank");
 
         moneyCoin.setDescriptionFile("res\\text\\OldBank\\look_money.txt");
+        chart.setDescriptionFile("res\\text\\OldBank\\look_chart.txt");
 
         bank.addItem(bench);
         bank.addItem(moneyCoin);
+        bank.addItem(chart);
         bank.addNPC(monkey);
         bank.addExit(bankToStreet);
         streetToBank.setDestination(bank); //The hero can now go to the bank from the street.
@@ -217,15 +238,21 @@ public class ProjetInit {
         Exit secretVillageToForest = new Exit("V2F", forest, "This is an exit to Forest from Secret Forest.");
         Location secretVillage = new Location("secretVillage","res\\text\\SecretVillage");
         secretVillage.addExit(secretVillageToForest);
-        //TODO: Add Butt, Turtle2
+        secretVillage.addNPC(turtle2);
+        secretVillage.addNPC(butt);
 
         // Initialization of all others commands
         Command.init(bunker, babou); //Bunker is the first location
 
-        //These three npc can make available the bank location
-        rabbit.setExitUnlockable(streetToBank);
+        //This npc can make available the forest location
+        mushroomBrothers.setExitUnlockable(streetToForest);
+        //This npc can make available the bank location
         dinolou.setExitUnlockable(streetToBank);
-        frog.setExitUnlockable(streetToBank);
+
+        //Boss Bank
+        NonPlayerCharacter.setBoss(monkey, forest.getNPC());
+        Item hoglet = new Hoglet("Hoglet", "A cute Hoglet.");
+        monkey.addItem(hoglet);
     }
 
     /**

@@ -4,14 +4,20 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import com.items.Inventory;
+import com.utils.MiniGame;
 import com.utils.TurtleFunction;
 import com.world.Exit;
 
 public class NonPlayerCharacter extends Character{
 
+    private static NonPlayerCharacter boss;
+
+    private MiniGame minigame = null;
+
     private String shortDescription;
     private String longDescription;
     private boolean firstTime = true;
+    private boolean firstTimeAttack = true;
 
     private ArrayList<String> attack1 = null;
     private ArrayList<String> attack2 = null;
@@ -66,12 +72,15 @@ public class NonPlayerCharacter extends Character{
         this.firstTime = false;
     }
 
-    public void attack() throws InterruptedException{
-        if(firstTime && attack1 != null) {
+    public void attack() throws InterruptedException, IOException{
+        if(this.minigame != null)
+        minigame.play();
+
+        if(firstTimeAttack && attack1 != null) {
             TurtleFunction.print(this.attack1);
-            lookedat();
+            firstTimeAttack = false;
         }
-        else if(!firstTime && attack2 != null)
+        else if(!firstTimeAttack && attack2 != null)
         TurtleFunction.print(this.attack2);
         else TurtleFunction.print("You can not attack " + this.name);
     }
@@ -93,10 +102,30 @@ public class NonPlayerCharacter extends Character{
         if(firstTime) {
             TurtleFunction.print(this.talk1);
             lookedat();
-            if(exitToUnlockTalking != null)
-            exitToUnlockTalking.unlock();
         }
         else
         TurtleFunction.print(this.talk2);
+
+        if(exitToUnlockTalking != null) {
+            if(exitToUnlockTalking.isLocked()) {
+                exitToUnlockTalking.unlock();
+                TurtleFunction.print("You unlock " + exitToUnlockTalking.getDestination().getName() + " location.");
+            }
+        }
     }
+
+    public static void setBoss(NonPlayerCharacter bossCarac, ArrayList<NonPlayerCharacter> forestMobs) throws IOException {
+        boss = bossCarac;
+        boss.minigame = new MiniGame(
+            "res\\text\\OldBank\\question1_monkey.txt",
+            "res\\text\\OldBank\\question2_monkey.txt",
+            "res\\text\\OldBank\\question3_monkey.txt",
+            "res\\text\\OldBank\\talk_true1.txt",
+            "res\\text\\OldBank\\talk_true2.txt",
+            "res\\text\\OldBank\\talk_true3.txt",
+            "res\\text\\OldBank\\talk_true.txt",
+            "res\\text\\OldBank\\talk_false.txt",
+            forestMobs
+        );
+    } 
 }

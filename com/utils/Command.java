@@ -86,8 +86,9 @@ public class Command {
      * Initialize all Commands
      * @param firstLocation
      * @param hero
+     * @throws InterruptedException
      */
-    public static void init(Location firstLocation, Hero hero) {
+    public static void init(Location firstLocation, Hero hero) throws InterruptedException {
         if (!alreadyInitialized) {
             currentLocation = firstLocation;
             ourSavior = hero;
@@ -95,6 +96,7 @@ public class Command {
             gameOverVar = false;
             alreadyInitialized = true;
             scanner = new Scanner(System.in);
+            TurtleFunction.print("Tap enter when -> (Next) appear to continue the game.\n");
         }
         else {
             System.out.println("Command has been initialized");
@@ -120,9 +122,12 @@ public class Command {
     /**
      * Set if this a Game Over or Not
      * @param gameOverOrNot
+     * @throws InterruptedException
      */
-    public static void setGameOver(boolean gameOverOrNot) {
+    public static void gameOver(boolean gameOverOrNot) throws InterruptedException {
         gameOverVar = gameOverOrNot;
+        TurtleFunction.print("You lost the game...");
+        Command.quit();
     }
 
     /**
@@ -166,12 +171,16 @@ public class Command {
      * @throws InterruptedException
      */
     private static void go(Exit zone) throws InterruptedException {
-        if(!zone.isLocked()) {
-            Command.currentLocation = zone.getDestination();
-            Command.currentLocation.goTo();
-        }
-        else{
-            TurtleFunction.print("You cannot pass! Maybe you forgot something?");
+        try{
+            if(!zone.isLocked()) {
+                Command.currentLocation = zone.getDestination();
+                Command.currentLocation.goTo();
+            }
+            else{
+                TurtleFunction.print("You cannot pass! Maybe you forgot something?");
+            }
+        } catch(NullPointerException e) {
+            System.err.println("Error: " + e.getMessage());
         }
     }
 
@@ -331,8 +340,9 @@ public class Command {
      * Attack a NPC
      * @param words
      * @throws InterruptedException
+     * @throws IOException
      */
-    private static void attack(String[] words) throws InterruptedException {
+    private static void attack(String[] words) throws InterruptedException, IOException {
         ArrayList<NonPlayerCharacter> npcs = currentLocation.getNPC();
         for (int i = 0; i < npcs.size(); i++) {
             if(npcs.get(i).getName().equalsIgnoreCase(words[1]))

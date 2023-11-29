@@ -3,7 +3,15 @@ display_success: dialogue si on a réussi l'épreuve
 display_gameOver: texte affiché si on perd ici
 
 talk_false: ce que le singe dit si on a répondu faux
-talk_true :  ce que le singe dit si la réponse est correcte
+
+talk_true1 :  ce que le singe dit si réponse à la 1ère question est correcte
+talk_true2 :  ce que le singe dit si réponse à la 1ère question est correcte
+talk_true3 :  ce que le singe dit si réponse à la 1ère question est correcte
+
 
 talk1: premier dialogue
 talk2: dialogue après toute l'épreuve
+
+question1 c'est la 2ème réponse la bonne
+question2 c'est la 1ère
+question3 c'est la 3ème
