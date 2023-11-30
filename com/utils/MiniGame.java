@@ -55,7 +55,7 @@ public class MiniGame {
      */
     public void play() throws InterruptedException, IOException, RawItemNotAllowedException {
         String answer;
-        TurtleFunction.print("Nobody yet win this game, will you? Answer with 1, 2 or 3.");
+        TurtleFunction.print("Answer with 1, 2 or 3.");
 
         //Q1 - 2nd Choise is good
         TurtleFunction.print(Q1, false);

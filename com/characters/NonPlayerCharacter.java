@@ -125,11 +125,6 @@ public class NonPlayerCharacter extends Character{
         return longDescription;
     }
 
-    /**Set a First Time meet with the NPC*/
-    public void lookedat(){
-        this.firstTime = false;
-    }
-
     /**
      * Attack the NPC if the NPC have a descriptor about it
      * @throws InterruptedException
@@ -144,7 +139,7 @@ public class NonPlayerCharacter extends Character{
             TurtleFunction.print(this.attack1);
             firstTimeAttack = false;
         }
-        else if(!firstTimeAttack && attack2 != null)
+        else if((!firstTimeAttack || !firstTime) && attack2 != null)
         TurtleFunction.print(this.attack2);
         else TurtleFunction.print("You can not attack " + this.name);
     }
@@ -156,7 +151,7 @@ public class NonPlayerCharacter extends Character{
     public void look() throws InterruptedException {
         if(firstTime) {
             TurtleFunction.print(this.look1);
-            lookedat();
+            this.firstTime = false;
         }
         else
         TurtleFunction.print(this.look2);
@@ -177,7 +172,7 @@ public class NonPlayerCharacter extends Character{
     public void interact() throws InterruptedException {
         if(firstTime) {
             TurtleFunction.print(this.talk1);
-            lookedat();
+            this.firstTime = false;
         }
         else
         TurtleFunction.print(this.talk2);
