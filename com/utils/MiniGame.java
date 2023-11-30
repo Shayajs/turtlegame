@@ -8,17 +8,16 @@ import com.items.Item;
 import com.items.RawItemNotAllowedException;
 
 public class MiniGame {
-    ArrayList<String> Q1;
-    ArrayList<String> Q2;
-    ArrayList<String> Q3;
-    String A1; // Response to good Answer to Question 1
-    String A2;
-    String A3;
-    String True;
-    String False;
-    int chance = 2;
-    boolean lostGame = false;
-    ArrayList<NonPlayerCharacter> mobs;
+    private ArrayList<String> Q1;
+    private ArrayList<String> Q2;
+    private ArrayList<String> Q3;
+    private String A1; // Response to good Answer to Question 1
+    private String A2;
+    private String A3;
+    private String False;
+    private String True;
+    private int chance = 2;
+    private ArrayList<NonPlayerCharacter> mobs;
 
     /**
      * This is the mini Game in the Old Bank with the monkey. You have three questions
@@ -58,33 +57,33 @@ public class MiniGame {
         TurtleFunction.print("Answer with 1, 2 or 3.");
 
         //Q1 - 2nd Choise is good
-        TurtleFunction.print(Q1, false);
+        TurtleFunction.print(this.Q1, false);
         TurtleFunction.print("\nAnswer: ");
         answer = Command.scanner.nextLine();
         if(answer.equalsIgnoreCase("2"))
-        this.win(A1);
+        this.win(this.A1);
         else {
             this.lost();
             return;
         }
 
         //Q2 - 1st Choise is good
-        TurtleFunction.print(Q2, false);
+        TurtleFunction.print(this.Q2, false);
         TurtleFunction.print("\nAnswer: ");
         answer = Command.scanner.nextLine();
         if(answer.equalsIgnoreCase("1"))
-        this.win(A2);
+        this.win(this.A2);
         else {
             this.lost();
             return;
         }
         
         //Q3 - 3rd Choise is good
-        TurtleFunction.print(Q3, false);
+        TurtleFunction.print(this.Q3, false);
         TurtleFunction.print("\nAnswer: ");
         answer = Command.scanner.nextLine();
         if(answer.equalsIgnoreCase("3"))
-        this.win(A3);
+        this.win(this.A3);
         else {
             this.lost();
             return;
@@ -108,9 +107,9 @@ public class MiniGame {
      * @throws IOException
      */
     private void lost() throws InterruptedException, IOException {
-        if(chance > 0) {
-            chance--;
-            TurtleFunction.print(False + " You have " + chance + " last chance before game over.");
+        if(this.chance > 0) {
+            this.chance--;
+            TurtleFunction.print(this.False + " You have " + this.chance + " last chance before game over.");
         }
         else {
             ArrayList<String> gameOverText = TurtleFunction.getConversationNPC("res/text/OldBank/display_gameOver.txt");
@@ -125,6 +124,6 @@ public class MiniGame {
      * @throws InterruptedException
      */
     private void win(String answerText) throws InterruptedException {
-        TurtleFunction.print(answerText + " ");
+        TurtleFunction.print(this.True + " " + answerText + " ");
     }
 }

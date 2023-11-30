@@ -106,13 +106,6 @@ public class Location {
     }
 
     /**
-     * Set the first time they meet each other
-     */
-    public void lookedat(){
-        this.firsttime = false;
-    }
-
-    /**
      * Returns all the Exits
      * @return
      */
