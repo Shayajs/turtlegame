@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import com.items.Inventory;
+import com.items.RawItemNotAllowedException;
 import com.utils.MiniGame;
 import com.utils.TurtleFunction;
 import com.world.Exit;
@@ -133,8 +134,9 @@ public class NonPlayerCharacter extends Character{
      * Attack the NPC if the NPC have a descriptor about it
      * @throws InterruptedException
      * @throws IOException
+     * @throws RawItemNotAllowedException
      */
-    public void attack() throws InterruptedException, IOException{
+    public void attack() throws InterruptedException, IOException, RawItemNotAllowedException{
         if(this.minigame != null)
         minigame.play();
 
@@ -207,5 +209,9 @@ public class NonPlayerCharacter extends Character{
             "res\\text\\OldBank\\talk_false.txt",
             forestMobs
         );
-    } 
+    }
+
+    public static NonPlayerCharacter getBoss() {
+        return boss;
+    }
 }

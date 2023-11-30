@@ -329,8 +329,9 @@ public class Command {
      * @param words
      * @throws InterruptedException
      * @throws IOException
+     * @throws RawItemNotAllowedException
      */
-    private static void attack(String[] words) throws InterruptedException, IOException {
+    private static void attack(String[] words) throws InterruptedException, IOException, RawItemNotAllowedException {
         ArrayList<NonPlayerCharacter> npcs = currentLocation.getNPC();
         for (int i = 0; i < npcs.size(); i++) {
             if(npcs.get(i).getName().equalsIgnoreCase(words[1]))

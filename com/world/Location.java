@@ -153,6 +153,7 @@ public class Location {
     public void goTo() throws InterruptedException {
         if(this.firsttime) {
             TurtleFunction.print(this.firstComing);
+            TurtleFunction.print(this.description);
             firsttime = false;
         }
         else

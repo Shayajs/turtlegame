@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import com.characters.NonPlayerCharacter;
+import com.items.Item;
+import com.items.RawItemNotAllowedException;
 
 public class MiniGame {
     ArrayList<String> Q1;
@@ -49,13 +51,15 @@ public class MiniGame {
      * To play the game, you have to init before play.
      * @throws InterruptedException
      * @throws IOException
+     * @throws RawItemNotAllowedException
      */
-    public void play() throws InterruptedException, IOException {
+    public void play() throws InterruptedException, IOException, RawItemNotAllowedException {
         String answer;
         TurtleFunction.print("Nobody yet win this game, will you? Answer with 1, 2 or 3.");
 
         //Q1 - 2nd Choise is good
         TurtleFunction.print(Q1, false);
+        TurtleFunction.print("\nAnswer: ");
         answer = Command.scanner.nextLine();
         if(answer.equalsIgnoreCase("2"))
         this.win(A1);
@@ -66,6 +70,7 @@ public class MiniGame {
 
         //Q2 - 1st Choise is good
         TurtleFunction.print(Q2, false);
+        TurtleFunction.print("\nAnswer: ");
         answer = Command.scanner.nextLine();
         if(answer.equalsIgnoreCase("1"))
         this.win(A2);
@@ -76,6 +81,7 @@ public class MiniGame {
         
         //Q3 - 3rd Choise is good
         TurtleFunction.print(Q3, false);
+        TurtleFunction.print("\nAnswer: ");
         answer = Command.scanner.nextLine();
         if(answer.equalsIgnoreCase("3"))
         this.win(A3);
@@ -90,6 +96,10 @@ public class MiniGame {
         for(NonPlayerCharacter npc : mobs) {
             npc.setNewTalkPath("res\\text\\Forest\\talk3_" + npc.getName().toLowerCase() + ".txt");
         }
+
+        //Give the Hoglet
+        Item hoglet = NonPlayerCharacter.getBoss().getInventory().pickItem("Hoglet");
+        Command.getHero().addItem(hoglet);
     }
 
     /**
