@@ -17,6 +17,22 @@ public class MiniGame {
     int chance = 2;
     boolean lostGame = false;
     ArrayList<NonPlayerCharacter> mobs;
+
+    /**
+     * This is the mini Game in the Old Bank with the monkey. You have three questions
+     * And you have 3 answers possible
+     * 2 Chance to win the game, but if you are short of chance, it's a GAME OVER.
+     * @param Q1File
+     * @param Q2File
+     * @param Q3File
+     * @param A1File
+     * @param A2File
+     * @param A3File
+     * @param talkTrue
+     * @param talkFalse
+     * @param mobs
+     * @throws IOException
+     */
     public MiniGame(String Q1File, String Q2File, String Q3File, String A1File, String A2File, String A3File, String talkTrue, String talkFalse, ArrayList<NonPlayerCharacter> mobs) throws IOException {
         this.Q1 = TurtleFunction.getConversationNPC(Q1File);
         this.Q2 = TurtleFunction.getConversationNPC(Q2File);
@@ -29,6 +45,11 @@ public class MiniGame {
         this.mobs = mobs;
     }
     
+    /**
+     * To play the game, you have to init before play.
+     * @throws InterruptedException
+     * @throws IOException
+     */
     public void play() throws InterruptedException, IOException {
         String answer;
         TurtleFunction.print("Nobody yet win this game, will you ?You will answer with 1, 2 or 3.");
@@ -41,7 +62,7 @@ public class MiniGame {
             this.lost();
             return;
         }
-        //Q2 - 1st
+        //Q2 - 1st Choise is good
         TurtleFunction.print(Q2, false);
         answer = Command.scanner.nextLine();
         if(answer.equalsIgnoreCase("1"))
@@ -50,7 +71,7 @@ public class MiniGame {
             this.lost();
             return;
         } 
-        //Q3 - 3rd
+        //Q3 - 3rd Choise is good
         TurtleFunction.print(Q3, false);
         answer = Command.scanner.nextLine();
         if(answer.equalsIgnoreCase("3"))
@@ -60,11 +81,19 @@ public class MiniGame {
             return;
         }
 
+        /**
+         * The mob in Forest have a new talk after winning the game
+         */
         for(NonPlayerCharacter npc : mobs) {
             npc.setNewTalkPath("res\\text\\Forest\\talk3_" + npc.getName().toLowerCase() + ".txt");
         }
     }
 
+    /**
+     * This is the algorithm if you lost one question
+     * @throws InterruptedException
+     * @throws IOException
+     */
     private void lost() throws InterruptedException, IOException {
         if(chance > 0) {
             chance--;
@@ -77,6 +106,11 @@ public class MiniGame {
         }
     }
 
+    /**
+     * This is the algo if you win the game
+     * @param answerText
+     * @throws InterruptedException
+     */
     private void win(String answerText) throws InterruptedException {
         TurtleFunction.print(answerText + " ");
     }

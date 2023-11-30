@@ -9,10 +9,11 @@ import com.utils.TurtleFunction;
  * An item is a descriptor object of all type of item existable.
  * Hero can have items, Location same.
  * 
- * There are 3 types of Item
+ * There are 2 types of Item
  * - ToolItem
- * - WeaponItem
  * - UselessItem
+ * 
+ * An item can be Wieldy or unwieldy
  */
 public abstract class Item {
 

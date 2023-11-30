@@ -61,29 +61,17 @@ GETEXIT :
  */
 
 public class Command {
-
-    /*
-        COMMANDS :
-
-        "GO",   //FINI
-        "HELP", //Fini
-        "LOOK", //Fini
-        "TAKE", //Fini
-        "USE", //Fini
-        "GETEXIT", //Fini
-        "ATTACK", //Fini
-        "QUIT"  //Fini
-        "LIST" //Fini
-    */
+    
     private static boolean alreadyInitialized = false;
     private static boolean thisIsTheEndBool;
     private static boolean gameOverVar;
-    private static Location currentLocation;
-    public static Scanner scanner;
-    private static Hero ourSavior;
+    private static Location currentLocation; // The current location of where the here is in real time
+    public static Scanner scanner; // We had problem when we create too many Scanner, so we set one and only one scanner.
+    private static Hero ourSavior; // The hero
 
     /**
-     * Initialize all Commands
+     * Initialize all Commands. This is the nerve of all the game. In Command you can start like initialized some variable
+     * There you set or get the Game Over variable
      * @param firstLocation
      * @param hero
      * @throws InterruptedException
