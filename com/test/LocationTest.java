@@ -12,7 +12,7 @@ public class LocationTest {
     Location loc;
 
     public LocationTest() throws IOException, RawItemNotAllowedException, InterruptedException {
-        loc = new Location("test", "com/test/LocationTest.java");
+        loc = new Location("test", "com/test/test_text");
         
         //Tests
         addExitTest();

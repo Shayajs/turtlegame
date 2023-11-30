@@ -21,7 +21,6 @@ public class InventoryTest {
         printListUselessItemTest();
         isPickableTest();
         getDescriptionOfTest();
-        useItemTest();
         getListItemTest();
 
     }

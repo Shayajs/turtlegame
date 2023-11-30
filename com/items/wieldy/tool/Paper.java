@@ -3,6 +3,7 @@ package com.items.wieldy.tool;
 import com.items.Item;
 import com.items.type.ToolItem;
 import com.items.wieldy.Wieldy;
+import com.utils.TurtleFunction;
 
 public class Paper extends Item implements ToolItem, Wieldy {
     public Paper(Item item) {
@@ -27,6 +28,10 @@ public class Paper extends Item implements ToolItem, Wieldy {
 
     @Override
     public void use() {
-        throw new UnsupportedOperationException("Unimplemented method 'use'");
+        try {
+            TurtleFunction.print("You use the paper");
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }
