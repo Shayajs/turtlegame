@@ -53,6 +53,7 @@ public class MiniGame {
     public void play() throws InterruptedException, IOException {
         String answer;
         TurtleFunction.print("Nobody yet win this game, will you? Answer with 1, 2 or 3.");
+
         //Q1 - 2nd Choise is good
         TurtleFunction.print(Q1, false);
         answer = Command.scanner.nextLine();
@@ -62,6 +63,7 @@ public class MiniGame {
             this.lost();
             return;
         }
+
         //Q2 - 1st Choise is good
         TurtleFunction.print(Q2, false);
         answer = Command.scanner.nextLine();
@@ -70,7 +72,8 @@ public class MiniGame {
         else {
             this.lost();
             return;
-        } 
+        }
+        
         //Q3 - 3rd Choise is good
         TurtleFunction.print(Q3, false);
         answer = Command.scanner.nextLine();
