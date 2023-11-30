@@ -325,21 +325,26 @@ public class Command {
     }
 
     /**
-     * Attack a NPC
+     * Attack a NPC, it takes one argument, no less, no more
      * @param words
      * @throws InterruptedException
      * @throws IOException
      * @throws RawItemNotAllowedException
      */
     private static void attack(String[] words) throws InterruptedException, IOException, RawItemNotAllowedException {
-        ArrayList<NonPlayerCharacter> npcs = currentLocation.getNPC();
-        for (int i = 0; i < npcs.size(); i++) {
-            if(npcs.get(i).getName().equalsIgnoreCase(words[1]))
-            {
-                npcs.get(i).attack();
-                return;
+        if(words.length == 2) {
+            ArrayList<NonPlayerCharacter> npcs = currentLocation.getNPC();
+            for (int i = 0; i < npcs.size(); i++) {
+                if(npcs.get(i).getName().equalsIgnoreCase(words[1]))
+                {
+                    npcs.get(i).attack();
+                    return;
+                }
             }
+            TurtleFunction.print("Maybe " + words[1] + "does not exist here.");
         }
+        else
+        TurtleFunction.print("Attack takes only one argument : The NPC target");
     }
 
     /**
@@ -356,9 +361,13 @@ public class Command {
                 TurtleFunction.print("This is lovely, but i cannot speak, i'm a Turtle after all. Talk to another one.");
                 break;
             case "kiddo":
+            case "kid":
+            case "minime":
                 TurtleFunction.print("Why do you want to speek to youself??");
                 break;
             case "any":
+            case "anyone":
+            case "anybody":
                 TurtleFunction.print("Sorry, at this rate i can not help you. No ! Command help can you, not me.");
                 break;
             default:
