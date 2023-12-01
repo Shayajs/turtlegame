@@ -34,19 +34,20 @@ public class Hoglet extends Item implements ToolItem, Wieldy {
     @Override
     public void use() {
         Hero babou = Command.getHero();
-        boolean hasKey = babou.getInventory().isOnInventory("Key");
-        if(Command.getCurrentLocation().getName().equalsIgnoreCase("ruinedHouse") && hasKey) {
+        boolean hasHog = babou.getInventory().isOnInventory("Hoglet");
+        if(Command.getCurrentLocation().getName().equalsIgnoreCase("forest") && hasHog) {
             try {
-                TurtleFunction.print("You used the Key !\n");
+                TurtleFunction.print("\nYou brought back Hoglet to his family !\n Now, since DinoLou explained you how to go, you unlocked SecretVillage");
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
             Map<String, Exit> exits = Command.getCurrentLocation().getExit();
-            Exit e = exits.get("H2S");
+            Exit e = exits.get("F2V");
             if(e != null)
             e.unlock();
             else
             System.err.println("Error with unlock");
+            babou.getInventory().removeFromInventory(this);
         }
     }
 }

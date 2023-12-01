@@ -105,7 +105,7 @@ public class Inventory {
      * Delete an item within the inventory
      * @param item
      */
-    private void removeFromInventory(Item item) {
+    public void removeFromInventory(Item item) {
         if (this.inventory.containsKey(item)) {
             this.inventory.remove(item);
         }

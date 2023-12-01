@@ -38,7 +38,7 @@ public class ProjetInit {
         NonPlayerCharacter frog = new NonPlayerCharacter("Frog");
         NonPlayerCharacter dinolou = new NonPlayerCharacter("Dinolou");
         NonPlayerCharacter monkey = new NonPlayerCharacter("Monkey");
-        NonPlayerCharacter butt = new NonPlayerCharacter("Butt");
+        NonPlayerCharacter butterfly = new NonPlayerCharacter("Butt");
         NonPlayerCharacter turtle2 = new NonPlayerCharacter("Turtle2");
 
         //Set files to NPC
@@ -79,7 +79,7 @@ public class ProjetInit {
             "res/text/OldBank/talk2_monkey.txt"
         );
 
-        butt.setConversationPath(
+        butterfly.setConversationPath(
             "res\\text\\SecretVillage\\look_butt.txt",
             "res\\text\\SecretVillage\\look_butt.txt",
             "res\\text\\SecretVillage\\talk_butt.txt",
@@ -179,7 +179,7 @@ public class ProjetInit {
         //Forest
         /*
          * In order :
-         * - Creation of 2 exits : to Street and to Secret Forest (The last one is locked)
+         * - Creation of 2 exits : to Street and to Secret Village (The last one is locked)
          * - Add 2 Items unwieldy : Not a Rock, THE Rock, a big one and a branch (decoration).
          * - Add 3 NPC : A rabbit, a frog and DINOLOU !
          * - Add these six objects to Location and add 2 types of Description : A short and a long one.
@@ -187,14 +187,14 @@ public class ProjetInit {
          */
         Exit forestToStreet = new Exit("F2S", street, "This is an exit to Street from Forest.");
         forestToStreet.unlock();
-        Exit forestToSecretForest = new Exit("F2SF", "You cannot go there without the secret item.");
+        Exit forestToSecretVillage = new Exit("F2V","You cannot go there without the secret item.");
         Item rock = new TheRock("Rock", "Not a Rock, THE Rock, a big one");
         Item branch = new Branch("Branch", "Just a dead branch in the ground.");
         Location forest = new Location("forest", "res\\text\\Forest");
         forest.addItem(rock);
         forest.addItem(branch);
         forest.addExit(forestToStreet);
-        forest.addExit(forestToSecretForest);
+        forest.addExit(forestToSecretVillage);
         forest.addNPC(rabbit);
         forest.addNPC(dinolou);
         forest.addNPC(frog);
@@ -235,11 +235,12 @@ public class ProjetInit {
         * - This location has only a description.
         * - Explain to forest than the Secret Village is available 
         */
-        Exit secretVillageToForest = new Exit("V2F", forest, "This is an exit to Forest from Secret Forest.");
+        Exit secretVillageToForest = new Exit("V2F", forest, "This is an exit to Forest from Secret Village.");
         Location secretVillage = new Location("secretVillage","res\\text\\SecretVillage");
         secretVillage.addExit(secretVillageToForest);
         secretVillage.addNPC(turtle2);
-        secretVillage.addNPC(butt);
+        secretVillage.addNPC(butterfly);
+        forestToSecretVillage.setDestination(secretVillage);
 
         // Initialization of all others commands
         Command.init(bunker, babou); //Bunker is the first location
@@ -264,7 +265,7 @@ public class ProjetInit {
     public static void start() throws IOException, InterruptedException, RawItemNotAllowedException {
         Command.getCurrentLocation().goTo();
         do {
-            TurtleFunction.print("\nWhat do like want to do? cmd: ");
+            TurtleFunction.print("\nWhat do you want to do? cmd: ");
             String userInput = Command.scanner.nextLine();
             Command.command(userInput);
         }while(!Command.isThisTheEnd());

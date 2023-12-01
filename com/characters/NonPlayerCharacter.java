@@ -132,16 +132,24 @@ public class NonPlayerCharacter extends Character{
      * @throws RawItemNotAllowedException
      */
     public void attack() throws InterruptedException, IOException, RawItemNotAllowedException{
-        if(this.minigame != null)
-        minigame.play();
-
-        if(firstTimeAttack && attack1 != null) {
+        if(this.minigame != null && !firstTime){
+            minigame.play();
+            minigame = null;
+            setNewTalkPath("res\\text\\OldBank\\talk3_monkey.txt");
+        }
+        else{
+             if(firstTimeAttack && attack1 != null) {
             TurtleFunction.print(this.attack1);
             firstTimeAttack = false;
+            }
+            else if((!firstTimeAttack || !firstTime) && attack2 != null)
+            TurtleFunction.print(this.attack2);
+            else TurtleFunction.print("You can not attack " + this.name);
+
         }
-        else if((!firstTimeAttack || !firstTime) && attack2 != null)
-        TurtleFunction.print(this.attack2);
-        else TurtleFunction.print("You can not attack " + this.name);
+        
+
+       
     }
 
     /**
@@ -200,7 +208,6 @@ public class NonPlayerCharacter extends Character{
             "res\\text\\OldBank\\talk_true1.txt",
             "res\\text\\OldBank\\talk_true2.txt",
             "res\\text\\OldBank\\talk_true3.txt",
-            "res\\text\\OldBank\\talk_true.txt",
             "res\\text\\OldBank\\talk_false.txt",
             forestMobs
         );
