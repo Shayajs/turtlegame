@@ -15,7 +15,6 @@ public class MiniGame {
     private String A2;
     private String A3;
     private String False;
-    private String True;
     private int chance = 2;
     private ArrayList<NonPlayerCharacter> mobs;
 
@@ -34,14 +33,13 @@ public class MiniGame {
      * @param mobs
      * @throws IOException
      */
-    public MiniGame(String Q1File, String Q2File, String Q3File, String A1File, String A2File, String A3File, String talkTrue, String talkFalse, ArrayList<NonPlayerCharacter> mobs) throws IOException {
+    public MiniGame(String Q1File, String Q2File, String Q3File, String A1File, String A2File, String A3File, String talkFalse, ArrayList<NonPlayerCharacter> mobs) throws IOException {
         this.Q1 = TurtleFunction.getConversationNPC(Q1File);
         this.Q2 = TurtleFunction.getConversationNPC(Q2File);
         this.Q3 = TurtleFunction.getConversationNPC(Q3File);
         this.A1 = TurtleFunction.getDescriptionFile(A1File);
         this.A2 = TurtleFunction.getDescriptionFile(A2File);
         this.A3 = TurtleFunction.getDescriptionFile(A3File);
-        this.True = TurtleFunction.getDescriptionFile(talkTrue);
         this.False = TurtleFunction.getDescriptionFile(talkFalse);
         this.mobs = mobs;
     }
@@ -124,6 +122,6 @@ public class MiniGame {
      * @throws InterruptedException
      */
     private void win(String answerText) throws InterruptedException {
-        TurtleFunction.print(this.True + " " + answerText + " ");
+        TurtleFunction.print(answerText + "\n");
     }
 }

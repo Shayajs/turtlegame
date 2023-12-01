@@ -50,6 +50,7 @@ public class Key extends Item implements ToolItem, Wieldy {
                 } catch (InterruptedException e1) {
                     e1.printStackTrace();
                 }
+                babou.getInventory().removeFromInventory(this);
             }
             else
             System.err.println("Error with unlock");
