@@ -264,7 +264,7 @@ public class ProjetInit {
     public static void start() throws IOException, InterruptedException, RawItemNotAllowedException {
         Command.getCurrentLocation().goTo();
         do {
-            TurtleFunction.print("\nWhat do like want to do? cmd: ");
+            TurtleFunction.print("\nWhat do you want to do? cmd: ");
             String userInput = Command.scanner.nextLine();
             Command.command(userInput);
         }while(!Command.isThisTheEnd());
